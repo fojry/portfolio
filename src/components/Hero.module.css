@@ -1,0 +1,116 @@
+.heroSection {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 24px;
+  text-align: center;
+  background: var(--hero-bg);
+}
+
+.canvasBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin-top: 40px;
+}
+
+.heroTitle {
+  font-family: var(--font-blinker);
+  font-size: clamp(48px, 10vw, 136px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.heroName {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.heroCaret {
+  display: inline-block;
+  color: var(--accent);
+  margin-left: 4px;
+  font-weight: 300;
+  animation: caret-blink 1.05s infinite ease-in-out;
+}
+
+.heroSubtitle {
+  font-family: var(--font-sulphur);
+  font-size: clamp(17px, 2.1vw, 24px);
+  line-height: 1.45;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 660px;
+  margin: 0 auto;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+  cursor: pointer;
+  padding: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.scrollCue:hover {
+  opacity: 0.8;
+}
+
+.scrollText {
+  font-family: var(--font-gilroy);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.scrollTrack {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.scrollBar {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 16px;
+  background: var(--accent);
+  animation: scroll-cue 2.2s infinite ease-in-out;
+}

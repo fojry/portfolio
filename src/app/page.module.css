@@ -1,0 +1,12 @@
+.pageShell {
+  position: relative;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+}

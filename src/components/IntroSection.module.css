@@ -1,0 +1,203 @@
+.introSection {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background-color: #000000;
+  padding: 100px 24px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .introSection {
+    padding: 140px 40px;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 64px;
+  }
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .leftCol {
+    width: 260px;
+  }
+}
+
+.sectionTitle {
+  font-family: var(--font-blinker);
+  font-size: clamp(48px, 8vw, 84px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.personaNav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 36px;
+}
+
+.personaBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  font-family: var(--font-gilroy);
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.25s ease;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .personaBtn {
+    font-size: 20px;
+  }
+}
+
+.personaBtn:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.personaBtnActive {
+  color: #ffffff;
+}
+
+.indicatorLine {
+  display: block;
+  height: 1.5px;
+  width: 16px;
+  background-color: currentColor;
+  opacity: 0.35;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.lineActive {
+  width: 36px;
+  opacity: 1;
+  background-color: var(--accent);
+}
+
+.rightCol {
+  width: 100%;
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .rightCol {
+    max-width: 840px;
+  }
+}
+
+.notepadCard {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 36px 28px;
+  box-shadow: 0 34px 70px -34px rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (min-width: 768px) {
+  .notepadCard {
+    min-height: 540px;
+    padding: 52px 48px;
+  }
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tagBadge {
+  font-family: var(--font-gilroy);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.statementText {
+  font-family: var(--font-sulphur);
+  font-size: clamp(26px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-gilroy);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.statusLive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.livePulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: var(--accent-green);
+  animation: dot-loop 2.2s infinite ease-in-out;
+}

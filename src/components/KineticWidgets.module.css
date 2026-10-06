@@ -1,0 +1,93 @@
+.waveformContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+  padding: 0 4px;
+}
+
+.waveBar {
+  width: 3px;
+  background-color: var(--primary);
+  border-radius: 1px;
+  animation: waveBar 0.8s infinite ease-in-out alternate;
+}
+
+.glitchText {
+  display: inline-block;
+  font-family: var(--font-syne-var);
+  transition: color 0.15s ease;
+  cursor: default;
+}
+
+.crosshair {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crosshairH {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.crosshairV {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.crosshairCircle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--primary);
+  background: #000000;
+  z-index: 1;
+}
+
+.signalWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signalPill {
+  position: relative;
+  display: flex;
+  width: 10px;
+  height: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pingDot {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--primary);
+  animation: pulsePing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.coreDot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+.signalLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: #ffffff;
+}

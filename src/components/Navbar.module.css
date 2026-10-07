@@ -8,6 +8,32 @@
   justify-content: center;
   padding: 16px;
   pointer-events: none;
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: headerDropIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+}
+
+@keyframes headerDropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-38px);
+    filter: blur(14px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  85% {
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+.headerScrolled {
+  padding-top: 12px;
 }
 
 .navPill {
@@ -24,7 +50,52 @@
   border-radius: 9999px;
   padding: 8px 14px 8px 10px;
   box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.25s ease;
+  animation: pillEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+}
+
+@keyframes pillEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.95);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  60% {
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(1px) scale(1.003);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Scrolled state: compact centered pill displaying ONLY profile photo and name */
+.navPillScrolled {
+  width: auto;
+  max-width: 240px;
+  justify-content: center;
+  padding: 6px 18px 6px 8px;
+  background: rgba(10, 10, 10, 0.82);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 34px -8px rgba(0, 0, 0, 0.85),
+              0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.navPillScrolled:hover {
+  background: rgba(16, 16, 16, 0.94);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 42px -6px rgba(0, 0, 0, 0.9),
+              0 0 16px rgba(255, 255, 255, 0.08);
 }
 
 .brand {
@@ -32,10 +103,27 @@
   align-items: center;
   gap: 12px;
   transition: transform 0.25s ease;
+  user-select: none;
+  animation: brandSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
+}
+
+@keyframes brandSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .brand:hover {
   transform: translateY(-1px);
+}
+
+.brandScrolled {
+  cursor: pointer;
 }
 
 .avatarWrap {
@@ -82,12 +170,49 @@
   display: none;
   align-items: center;
   gap: 24px;
+  min-width: 0;
+  opacity: 1;
+  max-width: 800px;
+  transform: translateX(0);
+  transition: opacity 0.3s ease 0.05s,
+              max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s ease,
+              gap 0.3s ease;
+  animation: navLinksSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+}
+
+@keyframes navLinksSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @media (min-width: 768px) {
   .desktopNavWrap {
     display: flex;
   }
+}
+
+.desktopNavHidden {
+  opacity: 0 !important;
+  max-width: 0 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+  transform: translateX(12px) scale(0.95);
+  transition: opacity 0.18s ease,
+              max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s ease,
+              gap 0.2s ease !important;
 }
 
 .navLinks {
@@ -178,14 +303,52 @@
   gap: 5px;
   width: 38px;
   height: 38px;
+  min-width: 38px;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.25s ease,
+              max-width 0.35s ease,
+              width 0.35s ease,
+              min-width 0.35s ease,
+              transform 0.25s ease,
+              background 0.2s ease;
+  animation: mobileBtnEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+}
+
+@keyframes mobileBtnEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media (min-width: 768px) {
   .mobileBtn {
     display: none;
   }
+}
+
+.mobileBtnHidden {
+  opacity: 0 !important;
+  max-width: 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  transform: scale(0.7);
+  transition: opacity 0.15s ease,
+              max-width 0.35s ease,
+              width 0.35s ease,
+              min-width 0.35s ease,
+              transform 0.2s ease !important;
 }
 
 .menuBar {
@@ -272,4 +435,14 @@
 
 .mobileSocialLink:hover {
   color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .navPill,
+  .brand,
+  .desktopNavWrap,
+  .mobileBtn {
+    animation: none !important;
+  }
 }

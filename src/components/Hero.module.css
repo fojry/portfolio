@@ -35,26 +35,99 @@
   font-family: var(--font-blinker);
   font-size: clamp(48px, 10vw, 136px);
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 36px;
+  min-height: 1.2em;
+  position: relative;
 }
 
 .heroName {
   display: inline-block;
   white-space: nowrap;
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-.heroCaret {
-  display: inline-block;
+.heroNameEnter {
+  animation: popSmallToBig 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.heroNameExit {
+  animation: smoothExit 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.heroNameFinal {
+  animation: popFinalSmooth 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.heroDot {
   color: var(--accent);
-  margin-left: 4px;
-  font-weight: 300;
-  animation: caret-blink 1.05s infinite ease-in-out;
+}
+
+@keyframes popSmallToBig {
+  0% {
+    opacity: 0;
+    transform: scale(0.65) translateY(14px);
+    filter: blur(10px);
+    letter-spacing: -0.04em;
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  80% {
+    transform: scale(1.025) translateY(-1px);
+    letter-spacing: -0.02em;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+    letter-spacing: -0.02em;
+  }
+}
+
+@keyframes smoothExit {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.08) translateY(-8px);
+    filter: blur(8px);
+  }
+}
+
+@keyframes popFinalSmooth {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(18px);
+    filter: blur(12px);
+    letter-spacing: -0.04em;
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  82% {
+    transform: scale(1.03) translateY(-1px);
+    letter-spacing: -0.02em;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+    letter-spacing: -0.02em;
+  }
 }
 
 .heroSubtitle {
@@ -67,6 +140,22 @@
   margin: 0 auto;
   text-wrap: balance;
   letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(8px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.heroSubtitleVisible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+  pointer-events: auto;
+  user-select: auto;
 }
 
 .scrollCue {

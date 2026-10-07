@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { CONTACT_EMAIL } from "@/data/portfolioData";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
-  const email = "fajry.radiant@gmail.com";
+  const email = CONTACT_EMAIL;
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -16,6 +17,12 @@ export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const mailtoHref = `mailto:${email}?subject=${encodeURIComponent(
+    "Say Hello — Project Inquiry"
+  )}&body=${encodeURIComponent(
+    "Hi Fajry,\n\nI came across your portfolio and would like to talk about a project:\n\n"
+  )}`;
 
   return (
     <footer className={styles.footer} id="contact">
@@ -33,7 +40,7 @@ export default function Footer() {
 
           <div className={styles.ctaActions}>
             <a
-              href={`mailto:${email}`}
+              href={mailtoHref}
               className={styles.emailBtn}
               data-cursor="explore"
             >
@@ -64,7 +71,7 @@ export default function Footer() {
               Instagram
             </a>
             <a
-              href="https://tiktok.com/@prwdences"
+              href="https://www.tiktok.com/@simpangbojack"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}
@@ -72,7 +79,7 @@ export default function Footer() {
               TikTok
             </a>
             <a
-              href="https://www.youtube.com/@fajryradiant"
+              href="https://www.youtube.com/@fojry"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}
@@ -88,7 +95,7 @@ export default function Footer() {
               Discord
             </a>
             <a
-              href="https://saweria.co"
+              href="https://saweria.co/fojry"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}

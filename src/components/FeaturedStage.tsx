@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { WorkCollection, MediaItem } from "@/data/portfolioData";
 import styles from "./FeaturedStage.module.css";
@@ -17,27 +17,131 @@ export default function FeaturedStage({
   onOpenCollection,
 }: FeaturedStageProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<"next" | "prev" | "none">("none");
+  const [animatingKey, setAnimatingKey] = useState(0);
+
+  // Swipe / Drag interactive state
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const isPointerDown = useRef(false);
+  const hasMoved = useRef(false);
 
   const total = works.length;
   const currentWork = works[currentIndex] || works[0];
 
+  const goToSlide = (newIndex: number, direction: "next" | "prev") => {
+    setSlideDirection(direction);
+    setCurrentIndex(newIndex);
+    setAnimatingKey((prev) => prev + 1);
+  };
+
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
+    const newIdx = currentIndex === 0 ? total - 1 : currentIndex - 1;
+    goToSlide(newIdx, "prev");
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
+    const newIdx = currentIndex === total - 1 ? 0 : currentIndex + 1;
+    goToSlide(newIdx, "next");
+  };
+
+  const handleTabClick = (idx: number) => {
+    if (idx === currentIndex) return;
+    goToSlide(idx, idx > currentIndex ? "next" : "prev");
+  };
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    dragStartX.current = e.touches[0].clientX;
+    isPointerDown.current = true;
+    hasMoved.current = false;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isPointerDown.current) return;
+    const diff = e.touches[0].clientX - dragStartX.current;
+    if (Math.abs(diff) > 8) {
+      hasMoved.current = true;
+      setIsDragging(true);
+      setDragOffset(diff * 0.7);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (!isPointerDown.current) return;
+    isPointerDown.current = false;
+    setIsDragging(false);
+
+    if (dragOffset < -50) {
+      handleNext();
+    } else if (dragOffset > 50) {
+      handlePrev();
+    }
+    setDragOffset(0);
+  };
+
+  // Mouse handlers for desktop swipe/drag
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (e.button !== 0) return;
+    dragStartX.current = e.clientX;
+    isPointerDown.current = true;
+    hasMoved.current = false;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isPointerDown.current) return;
+    const diff = e.clientX - dragStartX.current;
+    if (Math.abs(diff) > 8) {
+      hasMoved.current = true;
+      setIsDragging(true);
+      setDragOffset(diff * 0.7);
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isPointerDown.current) return;
+    isPointerDown.current = false;
+    setIsDragging(false);
+
+    if (dragOffset < -50) {
+      handleNext();
+    } else if (dragOffset > 50) {
+      handlePrev();
+    }
+    setDragOffset(0);
+  };
+
+  const handleMouseLeave = () => {
+    if (isPointerDown.current) {
+      handleMouseUp();
+    }
+  };
+
+  const handleCardClick = () => {
+    if (hasMoved.current) {
+      // Swiped, do not trigger modal/collection
+      return;
+    }
+    onOpenCollection(currentWork.slug);
   };
 
   // Representative thumbnail for the current work
   const heroMedia = currentWork.media[0];
+  const activePreviewMedia =
+    (currentWork.slug === "design"
+      ? currentWork.media.find((m) => m.id === "ds-3")
+      : heroMedia) || heroMedia;
+
   const thumbnailSrc =
-    heroMedia?.thumbnail ||
-    (currentWork.slug === "edited-gaming-moments"
+    currentWork.thumbnail ||
+    (currentWork.slug === "design"
+      ? "/projects/kecoapng.png"
+      : currentWork.slug === "motion-graphic"
+      ? "/projects/bukaruangg.png"
+      : currentWork.slug === "edited-gaming-moments"
       ? "/projects/tamnelbekrum2.png"
-      : currentWork.slug === "design"
-      ? "/character-banner.jpg"
-      : "/projects/rosblox.png");
+      : heroMedia?.thumbnail || "/projects/rosblox.png");
 
   return (
     <section className={styles.stageSection} id="works">
@@ -79,83 +183,109 @@ export default function FeaturedStage({
             </svg>
           </button>
 
-          {/* Main Stage Canvas */}
+          {/* Main Stage Canvas with Drag & Slide */}
           <div
-            className={styles.stageCard}
+            className={`${styles.stageCard} ${isDragging ? styles.isDragging : ""}`}
             data-cursor="view"
-            onClick={() => {
-              onOpenCollection(currentWork.slug);
-            }}
+            onClick={handleCardClick}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                onOpenCollection(currentWork.slug);
+              if (e.key === "ArrowLeft") {
+                handlePrev();
+              } else if (e.key === "ArrowRight") {
+                handleNext();
+              } else if (e.key === "Enter" || e.key === " ") {
+                handleCardClick();
               }
             }}
           >
-            {/* Background image preview */}
-            <div className={styles.imageLayer}>
-              <Image
-                key={currentWork.slug}
-                src={thumbnailSrc}
-                alt={currentWork.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 1200px"
-                className={styles.stageImage}
-                priority
-              />
-            </div>
+            {/* Animated Slide Content */}
+            <div
+              key={animatingKey}
+              className={`${styles.slideContent} ${
+                slideDirection === "next"
+                  ? styles.slideFromRight
+                  : slideDirection === "prev"
+                  ? styles.slideFromLeft
+                  : ""
+              }`}
+              style={{
+                transform: dragOffset !== 0 ? `translateX(${dragOffset}px)` : undefined,
+                transition: isDragging ? "none" : undefined,
+              }}
+            >
+              {/* Background image preview */}
+              <div className={styles.imageLayer}>
+                <Image
+                  src={thumbnailSrc}
+                  alt={currentWork.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 1200px"
+                  className={styles.stageImage}
+                  priority
+                />
+              </div>
 
-            {/* Gradient shadow overlay */}
-            <div className={styles.stageGradient} />
+              {/* Gradient shadow overlay */}
+              <div className={styles.stageGradient} />
 
-            {/* Top-left Counter Pill */}
-            <span className={styles.counterBadge}>
-              {String(currentIndex + 1).padStart(2, "0")} /{" "}
-              {String(total).padStart(2, "0")}
-            </span>
+              {/* Top-left Counter Pill */}
+              <span className={styles.counterBadge}>
+                {String(currentIndex + 1).padStart(2, "0")} /{" "}
+                {String(total).padStart(2, "0")}
+              </span>
 
-            {/* Top-right Tag */}
-            <span className={styles.categoryBadge}>
-              {currentWork.detailTagline}
-            </span>
+              {/* Top-right Tag */}
+              <span className={styles.categoryBadge}>
+                {currentWork.detailTagline}
+              </span>
 
-            {/* Bottom Content Info */}
-            <div className={styles.stageInfo}>
-              <h3 className={styles.stageTitle}>{currentWork.title}</h3>
-              <p className={styles.stageDesc}>{currentWork.summary}</p>
+              {/* Bottom Content Info */}
+              <div className={styles.stageInfo}>
+                <h3 className={styles.stageTitle}>{currentWork.title}</h3>
+                <p className={styles.stageDesc}>{currentWork.summary}</p>
 
-              <div className={styles.stageActions}>
-                <span
-                  className={styles.actionChip}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onOpenCollection(currentWork.slug);
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.stopPropagation();
-                      onOpenCollection(currentWork.slug);
-                    }
-                  }}
-                >
-                  <span>Explore Collection ({currentWork.media.length})</span>
-                  <span className={styles.arrowIcon}>↗</span>
-                </span>
-                {heroMedia && (
+                <div className={styles.stageActions}>
                   <span
-                    className={styles.playChip}
+                    className={styles.actionChip}
                     onClick={(e) => {
                       e.stopPropagation();
-                      onSelectMedia(heroMedia);
+                      onOpenCollection(currentWork.slug);
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.stopPropagation();
+                        onOpenCollection(currentWork.slug);
+                      }
                     }}
                   >
-                    ▶ Play Preview
+                    <span>Explore Collection ({currentWork.media.length})</span>
+                    <span className={styles.arrowIcon}>↗</span>
                   </span>
-                )}
+                  {activePreviewMedia && (
+                    <span
+                      className={styles.playChip}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectMedia(activePreviewMedia);
+                      }}
+                    >
+                      {activePreviewMedia.type === "image"
+                        ? "👁 View Preview"
+                        : "▶ Play Preview"}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -194,7 +324,7 @@ export default function FeaturedStage({
                 className={`${styles.tabBtn} ${
                   isActive ? styles.tabBtnActive : ""
                 }`}
-                onClick={() => setCurrentIndex(idx)}
+                onClick={() => handleTabClick(idx)}
               >
                 {work.label}
               </button>

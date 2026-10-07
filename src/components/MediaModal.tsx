@@ -66,6 +66,8 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
   const ytEmbed = item.type === "youtube" ? getYouTubeEmbedUrl(item.src) : null;
   const isDirectVideo =
     item.type === "video" ||
+    item.type === "Trailer Short Film" ||
+    item.type.toLowerCase().includes("trailer") ||
     item.src.endsWith(".mp4") ||
     item.src.endsWith(".webm");
 

@@ -1,6 +1,13 @@
 export interface MediaItem {
   id: string;
-  type: "youtube" | "tiktok" | "video" | "image" | "instagram" | "behance";
+  type:
+    | "youtube"
+    | "tiktok"
+    | "video"
+    | "image"
+    | "instagram"
+    | "behance"
+    | "Trailer Short Film";
   title: string;
   src: string;
   thumbnail?: string;
@@ -11,6 +18,7 @@ export interface WorkCollection {
   slug: string;
   label: string;
   title: string;
+  thumbnail?: string;
   thumbnailVideo?: string;
   summary: string;
   accent: string;
@@ -23,6 +31,122 @@ export interface WorkCollection {
 
 export const WORKS_DATA: WorkCollection[] = [
   {
+    slug: "short-film-videography",
+    label: "Short Film / Videography",
+    title: "Short Film / Videography",
+    summary:
+      "Narrative storytelling, short films, cinematic sequences, and creative videography production.",
+    accent:
+      "linear-gradient(135deg, rgba(30, 79, 118, 0.52), rgba(10, 10, 10, 0.95)), radial-gradient(circle at 20% 20%, rgba(127, 205, 255, 0.22), transparent 34%)",
+    featured: true,
+    detailTagline: "Cinematic Works",
+    description:
+      "A curated collection of short films, narrative visual storytelling, cinematic camera work, and video production projects.",
+    media: [
+      {
+        id: "latisan-film",
+        type: "behance",
+        title: "LATISAN (Short Film)",
+        src: "https://www.behance.net/gallery/213304253/Latisan",
+        thumbnail: "/projects/latisancover.png",
+        sourceHref: "https://www.behance.net/gallery/213304253/Latisan",
+      },
+      {
+        id: "robokop-film",
+        type: "behance",
+        title: "ROBOKOP : Every Table Has a Story",
+        src: "https://www.behance.net/gallery/213382551/ROBOKOP-Every-Table-Has-a-Story",
+        thumbnail: "/projects/robokop.jpg",
+        sourceHref: "https://www.behance.net/gallery/213382551/ROBOKOP-Every-Table-Has-a-Story",
+      },
+      {
+        id: "edit-2",
+        type: "video",
+        title: "SARINAH (Bumper Video)",
+        src: "/projects/sarinah15sec.mp4",
+        thumbnail: "/projects/sarinah.png",
+      },
+      {
+        id: "edit-3",
+        type: "video",
+        title: "SARINAH (Commercial 1)",
+        src: "/projects/Sarinah30Secrevision.mp4",
+        thumbnail: "/projects/sarinah 2.png",
+      },
+      {
+        id: "edit-4",
+        type: "video",
+        title: "RECAP - KLUB GAWESIKI",
+        src: "/projects/tesrecap1.mp4",
+        thumbnail: "/projects/gawsiiki.png",
+      },
+      {
+        id: "edit-5",
+        type: "Trailer Short Film",
+        title: "NOTIFIKASI (2024) - Short Film",
+        src: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).mp4",
+        thumbnail: "/projects/POSTER NOTIFIKASI 1;1.png",
+      },
+      {
+        id: "edit-6",
+        type: "video",
+        title: "BIORAMA",
+        src: "/projects/biorama.mp4",
+        thumbnail: "/projects/bioramathumb.png",
+      },
+    ],
+  },
+  {
+    slug: "motion-graphic",
+    label: "Motion Graphic",
+    title: "Motion Graphic",
+    thumbnail: "/projects/bukaruangg.png",
+    summary: "Kinetic type, explainer segments, and clean product animation.",
+    accent:
+      "linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 0.92)), radial-gradient(circle at 80% 20%, rgba(186, 230, 253, 0.26), transparent 35%)",
+    detailTagline: "Selected Pieces",
+    description:
+      "Layout and pacing focused pieces that can mix typography, UI fragments, and product visual language.",
+    media: [
+      {
+        id: "mg-1",
+        type: "video",
+        title: "Kinetic Typography Buka Ruang : HajaTan",
+        src: "/projects/hajatan.mp4",
+        thumbnail: "/projects/bukaruangg.png",
+      },
+      {
+        id: "mg-2",
+        type: "video",
+        title: "Aku dan Acha - Roblox Kinetic",
+        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        thumbnail: "/projects/rosblox.png",
+      },
+      {
+        id: "mg-3",
+        type: "behance",
+        title: "LATISAN",
+        src: "https://www.behance.net/gallery/213304253/Latisan",
+        thumbnail: "/projects/latisancover.png",
+        sourceHref: "https://www.behance.net/gallery/213304253/Latisan",
+      },
+      {
+        id: "mg-4",
+        type: "video",
+        title: "2nd Anniversary Kinetic Ident",
+        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
+        thumbnail: "/character-banner.jpg",
+      },
+      {
+        id: "mg-5",
+        type: "video",
+        title: "3rd Anniversary Motion Reel",
+        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        thumbnail: "/projects/motion-reel.jpg",
+      },
+    ],
+  },
+  {
     slug: "edited-gaming-moments",
     label: "Edited Gaming Moments",
     title: "Edited Gaming Moments",
@@ -30,7 +154,6 @@ export const WORKS_DATA: WorkCollection[] = [
       "Gameplay edit with subtitles, meme timing, funny moments, and chaotic cuts.",
     accent:
       "linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(15, 23, 42, 0.95)), radial-gradient(circle at center, rgba(125, 211, 252, 0.32), transparent 44%)",
-    featured: true,
     detailTagline: "Gaming Edit",
     description:
       "Subtitle-heavy gameplay videos packed with jokes, meme inserts, and fun moment edits.",
@@ -60,7 +183,7 @@ export const WORKS_DATA: WorkCollection[] = [
         id: "game-4",
         type: "tiktok",
         title: "siapa yang cita citanya kalo udah gede nanam 🌴 ?? - Roblox",
-        src: "https://www.tiktok.com/@prwdences/video/7618959818685975828",
+        src: "https://www.tiktok.com/@simpangbojack/video/7618959818685975828",
         thumbnail: "/projects/motion-reel.jpg",
       },
       {
@@ -73,115 +196,10 @@ export const WORKS_DATA: WorkCollection[] = [
     ],
   },
   {
-    slug: "motion-graphic",
-    label: "Motion Graphic",
-    title: "Motion Graphic",
-    summary: "Kinetic type, explainer segments, and clean product animation.",
-    accent:
-      "linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 0.92)), radial-gradient(circle at 80% 20%, rgba(186, 230, 253, 0.26), transparent 35%)",
-    detailTagline: "Selected Pieces",
-    description:
-      "Layout and pacing focused pieces that can mix typography, UI fragments, and product visual language.",
-    media: [
-      {
-        id: "mg-1",
-        type: "video",
-        title: "3rd Anniversary Motion Reel",
-        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-        thumbnail: "/projects/motion-reel.jpg",
-      },
-      {
-        id: "mg-2",
-        type: "video",
-        title: "Aku dan Acha - Roblox Kinetic",
-        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-        thumbnail: "/projects/rosblox.png",
-      },
-      {
-        id: "mg-3",
-        type: "behance",
-        title: "Latisan Videography",
-        src: "https://www.behance.net/gallery/213304253/Latisan",
-        thumbnail: "/projects/latisancover.png",
-        sourceHref: "https://www.behance.net/gallery/213304253/Latisan",
-      },
-      {
-        id: "mg-4",
-        type: "video",
-        title: "2nd Anniversary Kinetic Ident",
-        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
-        thumbnail: "/character-banner.jpg",
-      },
-    ],
-  },
-  {
-    slug: "short-film-videography",
-    label: "Short Film / Videography",
-    title: "Short Film / Videography",
-    summary:
-      "Narrative storytelling, short films, cinematic sequences, and creative videography production.",
-    accent:
-      "linear-gradient(135deg, rgba(30, 79, 118, 0.52), rgba(10, 10, 10, 0.95)), radial-gradient(circle at 20% 20%, rgba(127, 205, 255, 0.22), transparent 34%)",
-    detailTagline: "Cinematic Works",
-    description:
-      "A curated collection of short films, narrative visual storytelling, cinematic camera work, and video production projects.",
-    media: [
-      {
-        id: "latisan-film",
-        type: "behance",
-        title: "Latisan Videography",
-        src: "https://www.behance.net/gallery/213304253/Latisan",
-        thumbnail: "/projects/latisancover.png",
-        sourceHref: "https://www.behance.net/gallery/213304253/Latisan",
-      },
-      {
-        id: "edit-1",
-        type: "youtube",
-        title: "Agung Hapsah - Mizone Style",
-        src: "https://www.youtube.com/watch?v=mhpzUPpWD8g",
-        thumbnail: "/character-banner.jpg",
-      },
-      {
-        id: "edit-2",
-        type: "video",
-        title: "Sarinah Bumper Video",
-        src: "/projects/sarinah15sec.mp4",
-        thumbnail: "/projects/sarinah15sec.mp4",
-      },
-      {
-        id: "edit-3",
-        type: "youtube",
-        title: "Miami Baby - Fast Paced",
-        src: "https://www.youtube.com/shorts/ndhI6YIC3d8",
-        thumbnail: "/projects/rosblox.png",
-      },
-      {
-        id: "edit-4",
-        type: "youtube",
-        title: "Karina - Visual Flow",
-        src: "https://www.youtube.com/shorts/AqCIBMyrM8A",
-        thumbnail: "/projects/phe.jpg",
-      },
-      {
-        id: "edit-5",
-        type: "instagram",
-        title: "Don't Be Shy - AMV Edit",
-        src: "https://www.instagram.com/axchiil/reel/CLOoN_aAyqU/",
-        thumbnail: "/character-banner.jpg",
-      },
-      {
-        id: "edit-6",
-        type: "instagram",
-        title: "Hate it When U See Me",
-        src: "https://www.instagram.com/axchiil/reel/CGEgYfUgB5I/",
-        thumbnail: "/projects/motion-reel.jpg",
-      },
-    ],
-  },
-  {
     slug: "design",
     label: "Design",
     title: "Design",
+    thumbnail: "/projects/kecoapng.png",
     summary:
       "Static design showcase for layout, poster, key visual, and presentation frames.",
     accent:
@@ -191,25 +209,18 @@ export const WORKS_DATA: WorkCollection[] = [
       "A gallery of static design work for posters, boards, character sheets, and visual presentation assets.",
     media: [
       {
-        id: "ds-1",
-        type: "video",
-        title: "Kinetic Typography Buka Ruang : HajaTan",
-        src: "/projects/hajatan.mp4",
-        thumbnail: "/projects/hajatan.mp4",
-      },
-      {
         id: "ds-2",
         type: "image",
-        title: "Banner - Digital Advertising KliKFilm",
-        src: "/projects/rosblox.png",
-        thumbnail: "/projects/rosblox.png",
+        title: "Commercial Poster",
+        src: "/projects/periklanan.jpg",
+        thumbnail: "/projects/periklanan.jpg",
       },
       {
         id: "ds-3",
         type: "image",
-        title: "Book Cover Design",
-        src: "/projects/motion-reel.jpg",
-        thumbnail: "/projects/motion-reel.jpg",
+        title: "Poster",
+        src: "/projects/kecoapng.png",
+        thumbnail: "/projects/kecoapng.png",
       },
       {
         id: "ds-4",
@@ -260,3 +271,6 @@ export const TERMS_OF_SERVICE: string[] = [
   "No refunds or returns are allowed after the final product has been made.",
 ];
 
+export const CONTACT_EMAIL = "fajry.radiant@gmail.com";
+export const YOUTUBE_URL = "https://www.youtube.com/@fojry";
+export const TIKTOK_URL = "https://www.tiktok.com/@simpangbojack";

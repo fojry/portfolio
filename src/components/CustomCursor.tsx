@@ -16,11 +16,10 @@ export default function CustomCursor() {
 
   useEffect(() => {
     // Only enable on non-touch devices
-    if (window.matchMedia("(pointer: fine)").matches) {
-      setEnabled(true);
-    } else {
+    if (!window.matchMedia("(pointer: fine)").matches) {
       return;
     }
+    const timer = setTimeout(() => setEnabled(true), 0);
 
     const onMouseMove = (e: MouseEvent) => {
       target.current = { x: e.clientX, y: e.clientY };
@@ -70,6 +69,7 @@ export default function CustomCursor() {
     reqId.current = requestAnimationFrame(render);
 
     return () => {
+      clearTimeout(timer);
       window.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseleave", onMouseLeave);
       if (reqId.current) cancelAnimationFrame(reqId.current);

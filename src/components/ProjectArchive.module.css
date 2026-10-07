@@ -208,3 +208,57 @@
   font-size: 12px;
   color: rgba(255, 255, 255, 0.55);
 }
+
+/* Compact View More Box below Garry's Mod Indonesia */
+.viewMoreRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 32px;
+}
+
+@media (min-width: 768px) {
+  .viewMoreRow {
+    margin-top: 40px;
+  }
+}
+
+.viewMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: var(--font-gilroy);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.viewMoreBtn:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.16);
+}
+
+.viewMoreArrow {
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+
+.viewMoreBtn:hover .viewMoreArrow {
+  transform: translate(2px, -2px);
+}
+
+

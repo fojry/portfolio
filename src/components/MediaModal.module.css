@@ -77,6 +77,11 @@
   border-radius: 12px;
 }
 
+video.modalEmbed {
+  object-fit: contain;
+  max-height: min(72vh, 680px);
+}
+
 .isPortraitMedia .modalEmbed {
   width: min(100%, 400px);
   min-height: auto;

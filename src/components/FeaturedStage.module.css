@@ -315,3 +315,113 @@
   height: 2px;
   background-color: var(--accent);
 }
+
+/* Slide Animation & Drag Transitions */
+.slideContent {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
+
+.slideFromRight {
+  animation: slideInFromRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.slideFromLeft {
+  animation: slideInFromLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0.25;
+    transform: translate3d(50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0.25;
+    transform: translate3d(-50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideFromRight .stageTitle,
+.slideFromRight .stageDesc {
+  animation: textSlideInRight 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.slideFromLeft .stageTitle,
+.slideFromLeft .stageDesc {
+  animation: textSlideInLeft 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes textSlideInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes textSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideFromRight .stageImage,
+.slideFromLeft .stageImage {
+  animation: imageFadeZoom 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes imageFadeZoom {
+  0% {
+    filter: brightness(0.7);
+    transform: scale(1.05);
+  }
+  100% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+}
+
+.isDragging {
+  cursor: grabbing !important;
+  user-select: none;
+}
+
+.isDragging .stageImage {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideFromRight,
+  .slideFromLeft,
+  .slideFromRight .stageTitle,
+  .slideFromRight .stageDesc,
+  .slideFromLeft .stageTitle,
+  .slideFromLeft .stageDesc,
+  .slideFromRight .stageImage,
+  .slideFromLeft .stageImage {
+    animation: none !important;
+  }
+}
+

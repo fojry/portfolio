@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/data/portfolioData";
 import styles from "./Topbar.module.css";
 
 interface TopbarProps {
@@ -33,11 +34,18 @@ export default function Topbar({ onBrandClick }: TopbarProps) {
           Instagram
         </a>
         <a
-          href="https://tiktok.com/@prwdences"
+          href="https://www.tiktok.com/@simpangbojack"
           target="_blank"
           rel="noreferrer"
         >
           TikTok
+        </a>
+        <a
+          href="https://www.youtube.com/@fojry"
+          target="_blank"
+          rel="noreferrer"
+        >
+          YouTube
         </a>
         <a
           href="https://discord.com/channels/@me/790150016642973707"
@@ -46,9 +54,9 @@ export default function Topbar({ onBrandClick }: TopbarProps) {
         >
           Discord
         </a>
-        <a href="mailto:fajry.radiant@gmail.com">Email</a>
+        <a href={`mailto:${CONTACT_EMAIL}`}>Email</a>
         <a
-          href="https://saweria.co"
+          href="https://saweria.co/fojry"
           target="_blank"
           rel="noreferrer"
         >

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./IntroSection.module.css";
 
 interface AudiencePersona {
@@ -50,6 +50,54 @@ const PERSONAS: AudiencePersona[] = [
 
 export default function IntroSection() {
   const [activeId, setActiveId] = useState("anyone");
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [scrollState, setScrollState] = useState<"below" | "visible" | "passed">("below");
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setScrollState("visible");
+      return;
+    }
+
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!cardRef.current) {
+            ticking = false;
+            return;
+          }
+          const rect = cardRef.current.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+
+          // When top of card is below 85% of viewport: not reached yet (below)
+          // When bottom of card is above 120px: scrolled past it (passed)
+          // Otherwise: in view (visible)
+          if (rect.top > windowHeight * 0.85) {
+            setScrollState("below");
+          } else if (rect.bottom < 120) {
+            setScrollState("passed");
+          } else {
+            setScrollState("visible");
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   const currentPersona =
     PERSONAS.find((p) => p.id === activeId) || PERSONAS[0];
@@ -87,7 +135,16 @@ export default function IntroSection() {
 
         {/* Right Column: Editorial Statement Card */}
         <div className={styles.rightCol}>
-          <div className={styles.notepadCard}>
+          <div
+            ref={cardRef}
+            className={`${styles.notepadCard} ${
+              scrollState === "visible"
+                ? styles.cardVisible
+                : scrollState === "passed"
+                ? styles.cardPassed
+                : styles.cardBelow
+            }`}
+          >
             <div className={styles.badgeRow}>
               {currentPersona.tags.map((tag, idx) => (
                 <span key={idx} className={styles.tagBadge}>

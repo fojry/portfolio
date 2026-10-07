@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { MediaItem } from "@/data/portfolioData";
+import { MediaItem, WorkCollection, WORKS_DATA } from "@/data/portfolioData";
 import styles from "./ProjectArchive.module.css";
 
 interface ArchiveItem {
@@ -17,62 +17,49 @@ interface ArchiveItem {
 const ARCHIVE_ITEMS: ArchiveItem[] = [
   {
     id: "arc-1",
-    name: "Garry's Mod Indonesia",
-    category: "Chaotic Gameplay Edit",
-    year: "2023",
-    image: "/projects/rosblox.png",
+    name: "ROBOKOP",
+    category: "Every Table Has a Story",
+    year: "2024",
+    image: "/projects/robokop.jpg",
     media: {
-      id: "game-2",
-      type: "youtube",
-      title: "THE WORST GMOD MAP OF 2022 | Garry's Mod Indonesia",
-      src: "https://www.youtube.com/watch?v=90fQ5i4pVPY&t=5s",
-      thumbnail: "/projects/rosblox.png",
+      id: "robokop-film",
+      type: "behance",
+      title: "ROBOKOP : Every Table Has a Story",
+      src: "https://www.behance.net/gallery/213382551/ROBOKOP-Every-Table-Has-a-Story",
+      thumbnail: "/projects/robokop.jpg",
+      sourceHref: "https://www.behance.net/gallery/213382551/ROBOKOP-Every-Table-Has-a-Story",
     },
   },
   {
     id: "arc-2",
-    name: "Mizone Style Short",
-    category: "Cinematic Visual Storytelling",
-    year: "2023",
-    image: "/character-banner.jpg",
+    name: "Commercial Poster",
+    category: "Commercial Banner Design",
+    year: "2024",
+    image: "/projects/periklanan.jpg",
     media: {
-      id: "edit-1",
-      type: "youtube",
-      title: "Agung Hapsah - Mizone Style",
-      src: "https://www.youtube.com/watch?v=mhpzUPpWD8g",
-      thumbnail: "/character-banner.jpg",
+      id: "ds-2",
+      type: "image",
+      title: "Commercial Poster",
+      src: "/projects/periklanan.jpg",
+      thumbnail: "/projects/periklanan.jpg",
     },
   },
   {
     id: "arc-3",
-    name: "KliKFilm Digital Ad",
-    category: "Commercial Banner Design",
-    year: "2024",
-    image: "/projects/rosblox.png",
+    name: "Volume Gigs : podcast session",
+    category: "Podcast Session",
+    year: "2026",
+    image: "/projects/IMG_9535.PNG",
     media: {
-      id: "ds-2",
-      type: "image",
-      title: "Banner - Digital Advertising KliKFilm",
-      src: "/projects/rosblox.png",
-      thumbnail: "/projects/rosblox.png",
+      id: "live-2",
+      type: "youtube",
+      title: "Volume Gigs : podcast session",
+      src: "https://www.youtube.com/watch?v=If0YjC4801w&t=716s",
+      thumbnail: "/projects/IMG_9535.PNG",
     },
   },
   {
     id: "arc-4",
-    name: "Miami Baby Rhythm",
-    category: "Fast Paced Montage",
-    year: "2024",
-    image: "/projects/motion-reel.jpg",
-    media: {
-      id: "edit-3",
-      type: "youtube",
-      title: "Miami Baby - Fast Paced",
-      src: "https://www.youtube.com/shorts/ndhI6YIC3d8",
-      thumbnail: "/projects/rosblox.png",
-    },
-  },
-  {
-    id: "arc-5",
     name: "Askara Social Series",
     category: "Visual Identity & Social Feeds",
     year: "2024",
@@ -86,31 +73,51 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
     },
   },
   {
-    id: "arc-6",
-    name: "Don't Be Shy AMV",
-    category: "Beat Matched Transition Reel",
-    year: "2022",
-    image: "/character-banner.jpg",
+    id: "arc-5",
+    name: "NOTIFIKASI",
+    category: "Trailer Short Film",
+    year: "2024",
+    image: "/projects/POSTER NOTIFIKASI 1;1.png",
     media: {
       id: "edit-5",
-      type: "instagram",
-      title: "Don't Be Shy - AMV Edit",
-      src: "https://www.instagram.com/axchiil/reel/CLOoN_aAyqU/",
-      thumbnail: "/character-banner.jpg",
+      type: "Trailer Short Film",
+      title: "NOTIFIKASI (2024) - Short Film",
+      src: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).mp4",
+      thumbnail: "/projects/POSTER NOTIFIKASI 1;1.png",
+    },
+  },
+  {
+    id: "arc-6",
+    name: "Garry's Mod Indonesia",
+    category: "Chaotic Gameplay Edit",
+    year: "2023",
+    image: "/projects/rosblox.png",
+    media: {
+      id: "game-2",
+      type: "youtube",
+      title: "THE WORST GMOD MAP OF 2022 | Garry's Mod Indonesia",
+      src: "https://www.youtube.com/watch?v=90fQ5i4pVPY&t=5s",
+      thumbnail: "/projects/rosblox.png",
     },
   },
 ];
 
 interface ProjectArchiveProps {
   onSelectMedia: (item: MediaItem) => void;
+  onOpenCollection?: (slug: string) => void;
+  works?: WorkCollection[];
 }
 
 export default function ProjectArchive({
   onSelectMedia,
+  onOpenCollection,
+  works = WORKS_DATA,
 }: ProjectArchiveProps) {
   const [hoveredItem, setHoveredItem] = useState<ArchiveItem | null>(null);
   const [previewPos, setPreviewPos] = useState({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLElement>(null);
+
+  const defaultSlug = works[0]?.slug || "short-film-videography";
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!sectionRef.current) return;
@@ -176,6 +183,21 @@ export default function ProjectArchive({
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Compact View More Button directly below Garry's Mod Indonesia */}
+        <div className={styles.viewMoreRow}>
+          <button
+            type="button"
+            className={styles.viewMoreBtn}
+            onClick={() => onOpenCollection?.(defaultSlug)}
+            aria-label="View more projects in collection view"
+          >
+            <span>View More</span>
+            <span className={styles.viewMoreArrow} aria-hidden="true">
+              ↗
+            </span>
+          </button>
         </div>
       </div>
 

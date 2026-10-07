@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { WorkCollection, MediaItem } from "@/data/portfolioData";
+import { WorkCollection, MediaItem, CONTACT_EMAIL } from "@/data/portfolioData";
 import styles from "./CollectionDetail.module.css";
 
 interface CollectionDetailProps {
@@ -41,6 +41,11 @@ export default function CollectionDetail({
   }, []);
 
   const getPlatformLabel = (item: MediaItem): string => {
+    if (
+      item.type === "Trailer Short Film" ||
+      item.type.toLowerCase().includes("trailer")
+    )
+      return "TRAILER SHORT FILM";
     if (collection.slug === "livestreaming-event") return "YOUTUBE";
     if (item.type === "youtube") return "YOUTUBE";
     if (item.type === "tiktok") return "TIKTOK";
@@ -48,10 +53,15 @@ export default function CollectionDetail({
       return "BEHANCE";
     if (item.type === "instagram") return "INSTAGRAM";
     if (item.type === "video") return "VIDEO";
-    return "IMAGE";
+    return item.type.toUpperCase();
   };
 
   const getPlatformWatchText = (item: MediaItem): string => {
+    if (
+      item.type === "Trailer Short Film" ||
+      item.type.toLowerCase().includes("trailer")
+    )
+      return "Watch Trailer";
     if (collection.slug === "livestreaming-event") return "Watch on YouTube";
     if (item.type === "youtube") return "Watch on YouTube";
     if (item.type === "tiktok") return "Watch on TikTok";
@@ -59,7 +69,8 @@ export default function CollectionDetail({
       return "View on Behance";
     if (item.type === "instagram") return "View on Instagram";
     if (item.type === "video") return "Watch Video";
-    return "View Image";
+    if (item.type === "image") return "View Image";
+    return "View Media";
   };
 
   return (
@@ -92,12 +103,20 @@ export default function CollectionDetail({
             Instagram
           </a>
           <a
-            href="https://tiktok.com/@prwdences"
+            href="https://www.tiktok.com/@simpangbojack"
             target="_blank"
             rel="noreferrer"
             className={styles.socialLink}
           >
             TikTok
+          </a>
+          <a
+            href="https://www.youtube.com/@fojry"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.socialLink}
+          >
+            YouTube
           </a>
           <a
             href="https://discord.com/channels/@me/790150016642973707"
@@ -108,18 +127,18 @@ export default function CollectionDetail({
             Discord
           </a>
           <a
-            href="mailto:fajry.radiant@gmail.com"
+            href={`mailto:${CONTACT_EMAIL}`}
             className={styles.socialLink}
           >
             Email
           </a>
           <a
-            href="https://saweria.co"
+            href="https://saweria.co/fojry"
             target="_blank"
             rel="noreferrer"
             className={styles.socialLink}
           >
-            Sociabuzz
+            Saweria
           </a>
         </nav>
       </header>
@@ -205,14 +224,25 @@ export default function CollectionDetail({
               >
                 {/* 16:9 Thumbnail Area */}
                 <div className={styles.previewWrap}>
-                  {/* Thumbnail Image */}
-                  <Image
-                    src={thumbSrc}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className={styles.previewImage}
-                  />
+                  {/* Thumbnail Image or Video Preview */}
+                  {thumbSrc.endsWith(".mp4") || thumbSrc.endsWith(".webm") ? (
+                    <video
+                      src={thumbSrc}
+                      className={styles.previewImage}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                    />
+                  ) : (
+                    <Image
+                      src={thumbSrc}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className={styles.previewImage}
+                    />
+                  )}
 
                   {/* Shading Vignette */}
                   <div className={styles.previewGradient} />
@@ -232,22 +262,27 @@ export default function CollectionDetail({
                     </div>
                   </div>
 
-                  {/* Center Play Button Badge */}
-                  <div className={styles.centerPlay} aria-hidden="true">
-                    {item.type === "youtube" ||
-                    collection.slug === "livestreaming-event" ? (
-                      <div className={styles.ytPlayBtn}>
-                        <div className={styles.ytPlayIcon} />
+                  {/* Center Play Button Badge (omitted for image and design assets) */}
+                  {item.type !== "image" &&
+                    item.id !== "ds-2" &&
+                    item.id !== "ds-3" &&
+                    item.id !== "ds-4" && (
+                      <div className={styles.centerPlay} aria-hidden="true">
+                        {item.type === "youtube" ||
+                        collection.slug === "livestreaming-event" ? (
+                          <div className={styles.ytPlayBtn}>
+                            <div className={styles.ytPlayIcon} />
+                          </div>
+                        ) : item.type === "behance" ||
+                          item.src.includes("behance.net") ? (
+                          <div className={styles.behanceCenterBtn}>
+                            <span>Bē</span>
+                          </div>
+                        ) : (
+                          <div className={styles.genericPlayBtn}>▶</div>
+                        )}
                       </div>
-                    ) : item.type === "behance" ||
-                      item.src.includes("behance.net") ? (
-                      <div className={styles.behanceCenterBtn}>
-                        <span>Bē</span>
-                      </div>
-                    ) : (
-                      <div className={styles.genericPlayBtn}>▶</div>
                     )}
-                  </div>
 
                   {/* Bottom Frosted Bar (Link + Platform Chip) */}
                   <div className={styles.previewBottomBar}>

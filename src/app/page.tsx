@@ -25,20 +25,57 @@ export default function Home() {
     WORKS_DATA.find((w) => w.slug === activeCollectionSlug) || null;
 
   useEffect(() => {
-    const handlePopState = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith("#collection-")) {
-        const slug = hash.replace("#collection-", "");
-        setActiveCollectionSlug(slug);
-      } else {
-        setActiveCollectionSlug(null);
+    if (typeof window !== "undefined") {
+      // 1. Force browser not to restore previous scroll position on reload
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
       }
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
+
+      // 2. Clear any anchor hash (except collection) so browser doesn't jump down to #about or #works
+      if (window.location.hash && !window.location.hash.startsWith("#collection-")) {
+        try {
+          window.history.replaceState(null, "", window.location.pathname);
+        } catch {
+          // ignore
+        }
+      }
+
+      // 3. Immediately scroll to the very top (0, 0)
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+      const resetTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      };
+
+      const timer = setTimeout(resetTop, 10);
+      window.addEventListener("load", resetTop);
+      window.addEventListener("beforeunload", resetTop);
+
+      const handlePopState = () => {
+        const hash = window.location.hash;
+        if (hash.startsWith("#collection-")) {
+          const slug = hash.replace("#collection-", "");
+          setActiveCollectionSlug(slug);
+        } else {
+          setActiveCollectionSlug(null);
+        }
+      };
+      window.addEventListener("popstate", handlePopState);
+
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener("load", resetTop);
+        window.removeEventListener("beforeunload", resetTop);
+        window.removeEventListener("popstate", handlePopState);
+      };
+    }
   }, []);
 
   const handleScrollTo = (targetId: string) => {
+    if (targetId === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     const el = document.getElementById(targetId);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -97,7 +134,11 @@ export default function Home() {
         <Playground onSelectMedia={(item) => setSelectedMedia(item)} />
 
         {/* 6. Outline Typography Project Archive */}
-        <ProjectArchive onSelectMedia={(item) => setSelectedMedia(item)} />
+        <ProjectArchive
+          onSelectMedia={(item) => setSelectedMedia(item)}
+          onOpenCollection={handleOpenCollection}
+          works={WORKS_DATA}
+        />
 
         {/* 7. Collaboration Terms of Service */}
         <TermsSection />

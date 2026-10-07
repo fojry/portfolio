@@ -1,14 +1,67 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Hero.module.css";
 
 interface HeroProps {
   onScrollDown?: () => void;
 }
 
+const PHRASES = ["Hello everyone, its-", "Fajry Radiant"];
+const FINAL_NAME = "Fajry Radiant";
+
 export default function Hero({ onScrollDown }: HeroProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isExiting, setIsExiting] = useState(false);
+  const [showSubtitle, setShowSubtitle] = useState(false);
+
+  // Smooth small-to-large kinetic blooming sequence:
+  // 1. "Hello everyone, its-" grows smoothly from small to full size -> holds -> smooth fade/exit
+  // 2. "Fajry Radiant" blooms into full focus -> subtitle smoothly appears
+  useEffect(() => {
+    let isCancelled = false;
+    const timeouts: Array<ReturnType<typeof setTimeout>> = [];
+
+    const schedule = (fn: () => void, delay: number) => {
+      const id = setTimeout(() => {
+        if (!isCancelled) fn();
+      }, delay);
+      timeouts.push(id);
+      return id;
+    };
+
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setPhraseIndex(PHRASES.length - 1);
+      setShowSubtitle(true);
+      return;
+    }
+
+    // Phase 1: "Hello everyone, its-" grows smoothly from small to full size
+    // Start exit at 1200ms
+    schedule(() => {
+      setIsExiting(true);
+    }, 1200);
+
+    // Phase 2: Mount final "Fajry Radiant" at 1600ms (after 400ms smooth exit)
+    schedule(() => {
+      setPhraseIndex(1);
+      setIsExiting(false);
+    }, 1600);
+
+    // Reveal subtitle after final name settles smoothly
+    schedule(() => {
+      setShowSubtitle(true);
+    }, 2250);
+
+    return () => {
+      isCancelled = true;
+      timeouts.forEach(clearTimeout);
+    };
+  }, []);
 
   // Subtle ambient floating dust/particles
   useEffect(() => {
@@ -86,14 +139,30 @@ export default function Hero({ onScrollDown }: HeroProps) {
 
       {/* Main hero typography & copy */}
       <div className={styles.heroContent}>
-        <h1 className={styles.heroTitle}>
-          <span className={styles.heroName}>Fajry Radiant</span>
-          <span className={styles.heroCaret} aria-hidden="true">
-            |
+        <h1 className={styles.heroTitle} aria-label={FINAL_NAME}>
+          <span
+            key={phraseIndex}
+            className={`${styles.heroName} ${
+              phraseIndex === PHRASES.length - 1
+                ? styles.heroNameFinal
+                : isExiting
+                ? styles.heroNameExit
+                : styles.heroNameEnter
+            }`}
+            aria-hidden="true"
+          >
+            {PHRASES[phraseIndex]}
+            {phraseIndex === PHRASES.length - 1 && (
+              <span className={styles.heroDot}>.</span>
+            )}
           </span>
         </h1>
 
-        <p className={styles.heroSubtitle}>
+        <p
+          className={`${styles.heroSubtitle} ${
+            showSubtitle ? styles.heroSubtitleVisible : ""
+          }`}
+        >
           Visual Communication Designer &amp; Creative Video Editor who loves
           beautiful things and blends creativity, rhythm, and kinetic motion
           into every build.

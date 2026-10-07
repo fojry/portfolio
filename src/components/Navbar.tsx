@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/data/portfolioData";
 import styles from "./Navbar.module.css";
 
 interface NavbarProps {
@@ -11,6 +12,46 @@ interface NavbarProps {
 
 export default function Navbar({ onNavClick }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+    let ticking = false;
+
+    // Always initialize at full navbar on mount/refresh
+    setIsScrolled(false);
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          // If at the very top of the page, always show the full header
+          if (currentScrollY <= 50) {
+            setIsScrolled(false);
+          } else {
+            const diff = currentScrollY - lastScrollY;
+            // Scroll down -> only profile picture and name centered
+            if (diff > 8) {
+              setIsScrolled(true);
+              setMobileOpen(false);
+            }
+            // Scroll up (anywhere on the page) -> expand back to full heading bar!
+            else if (diff < -8) {
+              setIsScrolled(false);
+            }
+          }
+
+          lastScrollY = Math.max(0, currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -24,14 +65,21 @@ export default function Navbar({ onNavClick }: NavbarProps) {
   };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.navPill}>
+    <header
+      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}
+    >
+      <div
+        className={`${styles.navPill} ${
+          isScrolled ? styles.navPillScrolled : ""
+        }`}
+      >
         {/* Brand / Avatar */}
         <Link
           href="#top"
-          className={styles.brand}
+          className={`${styles.brand} ${isScrolled ? styles.brandScrolled : ""}`}
           onClick={(e) => handleLinkClick(e, "top")}
-          aria-label="Home"
+          aria-label={isScrolled ? "Scroll to top" : "Home"}
+          title={isScrolled ? "Scroll back to top" : undefined}
         >
           <div className={styles.avatarWrap}>
             <Image
@@ -50,12 +98,18 @@ export default function Navbar({ onNavClick }: NavbarProps) {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className={styles.desktopNavWrap}>
+        <div
+          className={`${styles.desktopNavWrap} ${
+            isScrolled ? styles.desktopNavHidden : ""
+          }`}
+          aria-hidden={isScrolled}
+        >
           <nav className={styles.navLinks} aria-label="Main Navigation">
             <a
               href="#works"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "works")}
+              tabIndex={isScrolled ? -1 : 0}
             >
               Works
               <span className={styles.linkLine} />
@@ -64,6 +118,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               href="#about"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "about")}
+              tabIndex={isScrolled ? -1 : 0}
             >
               About
               <span className={styles.linkLine} />
@@ -72,6 +127,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               href="#playground"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "playground")}
+              tabIndex={isScrolled ? -1 : 0}
             >
               Playground
               <span className={styles.linkLine} />
@@ -80,6 +136,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               href="#archive"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "archive")}
+              tabIndex={isScrolled ? -1 : 0}
             >
               Archive
               <span className={styles.linkLine} />
@@ -88,6 +145,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               href="#terms"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "terms")}
+              tabIndex={isScrolled ? -1 : 0}
             >
               TOS<span className={styles.navArrow}>↗</span>
               <span className={styles.linkLine} />
@@ -106,6 +164,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               aria-label="LinkedIn"
               className={styles.socialIcon}
               title="LinkedIn"
+              tabIndex={isScrolled ? -1 : 0}
             >
               <svg viewBox="0 0 48 48" width="22" height="22">
                 <rect width="48" height="48" rx="12" fill="#2867B2" />
@@ -118,10 +177,11 @@ export default function Navbar({ onNavClick }: NavbarProps) {
 
             {/* Email */}
             <a
-              href="mailto:fajry.radiant@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               aria-label="Email"
               className={styles.socialIcon}
               title="Email me"
+              tabIndex={isScrolled ? -1 : 0}
             >
               <svg viewBox="0 0 48 48" width="22" height="22">
                 <path
@@ -155,6 +215,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               aria-label="Instagram"
               className={styles.socialIcon}
               title="Instagram"
+              tabIndex={isScrolled ? -1 : 0}
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.igSvg}>
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -170,8 +231,12 @@ export default function Navbar({ onNavClick }: NavbarProps) {
           type="button"
           aria-label="Toggle Menu"
           aria-expanded={mobileOpen}
-          className={styles.mobileBtn}
+          className={`${styles.mobileBtn} ${
+            isScrolled ? styles.mobileBtnHidden : ""
+          }`}
           onClick={() => setMobileOpen(!mobileOpen)}
+          tabIndex={isScrolled ? -1 : 0}
+          aria-hidden={isScrolled}
         >
           <span className={`${styles.menuBar} ${mobileOpen ? styles.barOpen1 : ""}`} />
           <span className={`${styles.menuBar} ${mobileOpen ? styles.barOpen2 : ""}`} />
@@ -182,7 +247,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
       {/* Mobile Dropdown Panel */}
       <div
         className={`${styles.mobilePanel} ${
-          mobileOpen ? styles.mobilePanelActive : ""
+          mobileOpen && !isScrolled ? styles.mobilePanelActive : ""
         }`}
       >
         <nav className={styles.mobileNavLinks}>
@@ -232,14 +297,22 @@ export default function Navbar({ onNavClick }: NavbarProps) {
             Instagram
           </a>
           <a
-            href="https://tiktok.com/@prwdences"
+            href="https://www.tiktok.com/@simpangbojack"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mobileSocialLink}
           >
             TikTok
           </a>
-          <a href="mailto:fajry.radiant@gmail.com" className={styles.mobileSocialLink}>
+          <a
+            href="https://www.youtube.com/@fojry"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.mobileSocialLink}
+          >
+            YouTube
+          </a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className={styles.mobileSocialLink}>
             Email
           </a>
         </div>

@@ -184,3 +184,51 @@
 .timezone {
   letter-spacing: 0.05em;
 }
+
+/* Tablet & iPad Responsive Optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer {
+    padding: 100px 32px 48px;
+  }
+}
+
+/* Mobile Responsive Optimization (< 768px) */
+@media (max-width: 767px) {
+  .footer {
+    padding: 72px 16px 36px;
+  }
+  .ctaBlock {
+    margin-bottom: 44px;
+  }
+  .statusPill {
+    margin-bottom: 20px;
+    font-size: 12px;
+    padding: 5px 14px;
+  }
+  .ctaTitle {
+    font-size: clamp(30px, 8.5vw, 44px);
+    margin-bottom: 24px;
+  }
+  .ctaActions {
+    gap: 10px;
+  }
+  .emailBtn {
+    padding: 11px 22px;
+    font-size: 14px;
+  }
+  .copyBtn {
+    padding: 11px 18px;
+    font-size: 13.5px;
+  }
+  .socialRow {
+    padding: 24px 0;
+    gap: 16px;
+  }
+  .socialLinks {
+    gap: 12px 18px;
+  }
+  .socialLink {
+    font-size: 14px;
+  }
+}
+

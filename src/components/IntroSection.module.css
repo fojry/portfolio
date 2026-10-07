@@ -231,3 +231,76 @@
   background-color: var(--accent-green);
   animation: dot-loop 2.2s infinite ease-in-out;
 }
+
+/* Tablet & iPad Responsive Optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .introSection {
+    padding: 100px 32px;
+    min-height: auto;
+  }
+  .container {
+    gap: 40px;
+  }
+  .notepadCard {
+    min-height: 440px;
+    padding: 40px 36px;
+  }
+  .statementText {
+    font-size: clamp(24px, 3.2vw, 36px);
+  }
+}
+
+/* Mobile Responsive Optimization (< 768px) */
+@media (max-width: 767px) {
+  .introSection {
+    padding: 72px 16px;
+    min-height: auto;
+  }
+  .container {
+    gap: 24px;
+  }
+  .sectionTitle {
+    font-size: clamp(34px, 8.5vw, 44px);
+  }
+  .personaNav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 16px;
+  }
+  .personaBtn {
+    font-size: 15px;
+    padding: 4px 0;
+    gap: 8px;
+  }
+  .indicatorLine {
+    width: 12px;
+  }
+  .lineActive {
+    width: 24px;
+  }
+  .notepadCard {
+    min-height: auto;
+    padding: 24px 18px;
+    border-radius: 20px;
+    gap: 24px;
+  }
+  .badgeRow {
+    margin-bottom: 16px;
+    gap: 6px;
+  }
+  .tagBadge {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+  .statementText {
+    font-size: clamp(20px, 5.5vw, 26px);
+    line-height: 1.35;
+  }
+  .cardFooter {
+    padding-top: 20px;
+    font-size: 12.5px;
+    gap: 12px;
+  }
+}
+

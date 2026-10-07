@@ -113,3 +113,40 @@
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: -0.01em;
 }
+
+/* Tablet & iPad Responsive Optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .termsSection {
+    padding: 100px 32px;
+  }
+}
+
+/* Mobile Responsive Optimization (< 768px) */
+@media (max-width: 767px) {
+  .termsSection {
+    padding: 72px 16px;
+  }
+  .header {
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .title {
+    font-size: clamp(34px, 8.5vw, 44px);
+  }
+  .subtitle {
+    font-size: 14.5px;
+    margin-top: 12px;
+  }
+  .termCard {
+    padding: 20px 18px;
+    gap: 12px;
+  }
+  .cardText {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+}
+

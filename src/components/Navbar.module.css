@@ -437,6 +437,56 @@
   color: #ffffff;
 }
 
+/* Tablet & iPad Responsive Optimization (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .desktopNavWrap {
+    gap: 14px;
+  }
+  .navLinks {
+    gap: 14px;
+    font-size: 14px;
+  }
+  .brandName {
+    font-size: 15px;
+  }
+  .socialGroup {
+    gap: 10px;
+  }
+}
+
+/* Mobile Responsive Optimization (< 768px) */
+@media (max-width: 767px) {
+  .header {
+    padding: 10px 12px;
+  }
+  .navPill {
+    padding: 6px 10px 6px 8px;
+  }
+  .avatarWrap {
+    width: 36px;
+    height: 36px;
+  }
+  .brandName {
+    font-size: 15px;
+  }
+  .mobileBtn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+  .mobilePanel {
+    top: 64px;
+    left: 12px;
+    right: 12px;
+    padding: 18px 20px;
+    gap: 14px;
+  }
+  .mobileNavLinks {
+    gap: 10px;
+    font-size: 17px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .header,
   .navPill,

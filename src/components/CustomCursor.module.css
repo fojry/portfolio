@@ -62,3 +62,10 @@
   letter-spacing: 0.05em;
   color: #000000;
 }
+
+@media (hover: none) or (pointer: coarse) {
+  .cursorWrap {
+    display: none !important;
+  }
+}
+

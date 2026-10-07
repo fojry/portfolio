@@ -56,3 +56,23 @@
   line-height: 1;
   display: inline-block;
 }
+
+@media (max-width: 767px) {
+  .marqueeBand {
+    padding: 16px 0;
+  }
+  .marqueeGroup {
+    gap: 24px;
+    padding-right: 24px;
+  }
+  .marqueeItem {
+    gap: 24px;
+  }
+  .itemText {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+  .itemStar {
+    font-size: 18px;
+  }
+}
+

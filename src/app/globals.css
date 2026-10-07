@@ -87,6 +87,8 @@ html {
   scroll-behavior: smooth;
   background-color: var(--background);
   color: var(--foreground);
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -95,6 +97,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sulphur);
   overflow-x: hidden;
+  max-width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

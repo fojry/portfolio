@@ -33,7 +33,7 @@
 
 .heroTitle {
   font-family: var(--font-blinker);
-  font-size: clamp(48px, 10vw, 136px);
+  font-size: clamp(28px, 8.5vw, 136px);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -44,6 +44,7 @@
   margin-bottom: 36px;
   min-height: 1.2em;
   position: relative;
+  max-width: 100%;
 }
 
 .heroName {
@@ -202,4 +203,33 @@
   height: 16px;
   background: var(--accent);
   animation: scroll-cue 2.2s infinite ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 0 16px;
+    min-height: 100svh;
+  }
+  .heroContent {
+    margin-top: 24px;
+    padding: 0 8px;
+  }
+  .heroTitle {
+    font-size: clamp(26px, 7.5vw, 54px);
+    margin-bottom: 20px;
+    min-height: 1.3em;
+  }
+  .heroSubtitle {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .scrollCue {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .heroTitle {
+    font-size: clamp(23px, 7vw, 34px);
+  }
 }

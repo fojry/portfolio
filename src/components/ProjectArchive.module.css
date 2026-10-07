@@ -261,4 +261,56 @@
   transform: translate(2px, -2px);
 }
 
+/* Tablet & iPad Responsive Optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .archiveSection {
+    padding: 100px 32px;
+  }
+  .itemName {
+    font-size: clamp(32px, 5vw, 54px);
+  }
+}
+
+/* Mobile Responsive Optimization (< 768px) */
+@media (max-width: 767px) {
+  .archiveSection {
+    padding: 72px 16px;
+  }
+  .header {
+    margin-bottom: 28px;
+  }
+  .title {
+    font-size: clamp(34px, 8.5vw, 44px);
+  }
+  .subtitle {
+    font-size: 14.5px;
+    margin-top: 12px;
+  }
+  .listItem {
+    padding: 18px 0;
+    gap: 12px;
+  }
+  .listItem:hover .itemLeft {
+    transform: none;
+  }
+  .itemName {
+    font-size: clamp(22px, 6.2vw, 34px);
+    line-height: 1.05;
+  }
+  .itemMeta {
+    font-size: 12px;
+  }
+  .itemArrow {
+    font-size: 18px;
+  }
+  .viewMoreRow {
+    margin-top: 24px;
+  }
+  .viewMoreBtn {
+    padding: 8px 18px;
+    font-size: 12px;
+  }
+}
+
+
 

@@ -32,7 +32,26 @@ export default function CommandBox({ command, id }: CommandBoxProps) {
         className={`${styles.copyBtn} ${copied ? styles.copied : ""}`}
         title="Salin perintah"
       >
-        {copied ? "✓ Tersalin!" : "Salin"}
+        {copied ? (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+            <svg
+              viewBox="0 0 24 24"
+              width="13"
+              height="13"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Tersalin!
+          </span>
+        ) : (
+          "Salin"
+        )}
       </button>
     </div>
   );

@@ -179,11 +179,32 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
                     className={styles.warningTagBadge}
                     title="Warning: Explicit language & loud audio"
                   >
-                    ⚠️ 16+ Loud / Explicit
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="10"
+                      height="10"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ display: "inline-block", verticalAlign: "-1px", marginRight: "4px" }}
+                    >
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    16+ Loud / Explicit
                   </span>
                 )}
                 <span className={styles.playIcon} aria-hidden="true">
-                  {item.media.type === "behance" ? "↗" : "▶"}
+                  {item.media.type === "behance" ? (
+                    "↗"
+                  ) : (
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                      <polygon points="6 4 20 12 6 20 6 4" />
+                    </svg>
+                  )}
                 </span>
               </div>
 

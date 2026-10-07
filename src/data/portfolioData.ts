@@ -167,7 +167,7 @@ export const WORKS_DATA: WorkCollection[] = [
     description:
       "Subtitle-heavy gameplay videos packed with jokes, meme inserts, and chaotic moment edits.",
     contentWarning: {
-      badge: "⚠️ Content Warning: 16+ / Loud Audio",
+      badge: "Content Warning: 16+ / Loud Audio",
       title: "Content Warning: Explicit Language & Loud Audio",
       description:
         "Videos in this collection contain explicit language / profanity and sudden loud audio effects / screamers. Please adjust your headset or speaker volume before watching.",
@@ -201,7 +201,7 @@ export const WORKS_DATA: WorkCollection[] = [
       {
         id: "game-4",
         type: "tiktok",
-        title: "siapa yang cita citanya kalo udah gede nanam 🌴 ?? - Roblox",
+        title: "siapa yang cita citanya kalo udah gede nanam pohon ?? - Roblox",
         src: "https://www.tiktok.com/@simpangbojack/video/7618959818685975828",
         thumbnail: "/projects/motion-reel.jpg",
         warning: "Explicit Language & Loud Audio",

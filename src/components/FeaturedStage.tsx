@@ -252,7 +252,21 @@ export default function FeaturedStage({
               <div className={styles.stageInfo}>
                 {currentWork.contentWarning && (
                   <div className={styles.stageWarningPill}>
-                    <span className={styles.warningPillIcon}>⚠️</span>
+                    <svg
+                      className={styles.warningPillIcon}
+                      viewBox="0 0 24 24"
+                      width="13"
+                      height="13"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
                     <span>Warning: Explicit Language &amp; Loud Audio</span>
                   </div>
                 )}
@@ -286,9 +300,38 @@ export default function FeaturedStage({
                         onSelectMedia(activePreviewMedia);
                       }}
                     >
-                      {activePreviewMedia.type === "image"
-                        ? "👁 View Preview"
-                        : "▶ Play Preview"}
+                      {activePreviewMedia.type === "image" ? (
+                        <>
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="13"
+                            height="13"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            style={{ marginRight: 6, display: "inline-block", verticalAlign: "-2px" }}
+                          >
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                            <circle cx="12" cy="12" r="3" />
+                          </svg>
+                          <span>View Preview</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="11"
+                            height="11"
+                            fill="currentColor"
+                            style={{ marginRight: 6, display: "inline-block", verticalAlign: "-1px" }}
+                          >
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                          </svg>
+                          <span>Play Preview</span>
+                        </>
+                      )}
                     </span>
                   )}
                 </div>

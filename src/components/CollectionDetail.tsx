@@ -172,7 +172,21 @@ export default function CollectionDetail({
           {collection.contentWarning && (
             <div className={styles.warningBox}>
               <div className={styles.warningBoxTop}>
-                <span className={styles.warningIconBig}>⚠️</span>
+                <svg
+                  className={styles.warningIconBig}
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="#f87171"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
                 <div className={styles.warningBoxContent}>
                   <div className={styles.warningBoxBadge}>
                     {collection.contentWarning.badge}
@@ -300,7 +314,22 @@ export default function CollectionDetail({
                       className={styles.cardWarningBadge}
                       title="Warning: Explicit language & loud audio"
                     >
-                      ⚠️ 16+ Loud / Explicit
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="10"
+                        height="10"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{ display: "inline-block", verticalAlign: "-1px", marginRight: "4px" }}
+                      >
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                      </svg>
+                      16+ Loud / Explicit
                     </span>
                   )}
 
@@ -321,7 +350,11 @@ export default function CollectionDetail({
                             <span>Bē</span>
                           </div>
                         ) : (
-                          <div className={styles.genericPlayBtn}>▶</div>
+                          <div className={styles.genericPlayBtn}>
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                              <polygon points="6 4 20 12 6 20 6 4" />
+                            </svg>
+                          </div>
                         )}
                       </div>
                     )}
@@ -336,7 +369,19 @@ export default function CollectionDetail({
                       title="Open source"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      🔗
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="13"
+                        height="13"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                      </svg>
                     </a>
 
                     <a

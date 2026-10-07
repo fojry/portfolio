@@ -217,6 +217,12 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+.locationTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .statusLive {
   display: inline-flex;
   align-items: center;

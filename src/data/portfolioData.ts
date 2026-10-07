@@ -8,13 +8,13 @@ export interface ContentWarning {
 export interface MediaItem {
   id: string;
   type:
-    | "youtube"
-    | "tiktok"
-    | "video"
-    | "image"
-    | "instagram"
-    | "behance"
-    | "Trailer Short Film";
+  | "youtube"
+  | "tiktok"
+  | "video"
+  | "image"
+  | "instagram"
+  | "behance"
+  | "Trailer Short Film";
   title: string;
   src: string;
   thumbnail?: string;
@@ -131,35 +131,7 @@ export const WORKS_DATA: WorkCollection[] = [
         src: "/projects/hajatan.webm",
         thumbnail: "/projects/bukaruangg.png",
       },
-      {
-        id: "mg-2",
-        type: "video",
-        title: "Aku dan Acha - Roblox Kinetic",
-        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-        thumbnail: "/projects/rosblos.png",
-      },
-      {
-        id: "mg-3",
-        type: "behance",
-        title: "LATISAN",
-        src: "https://www.behance.net/gallery/213304253/Latisan",
-        thumbnail: "/projects/latisancover.png",
-        sourceHref: "https://www.behance.net/gallery/213304253/Latisan",
-      },
-      {
-        id: "mg-4",
-        type: "video",
-        title: "2nd Anniversary Kinetic Ident",
-        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
-        thumbnail: "/character-banner.jpg",
-      },
-      {
-        id: "mg-5",
-        type: "video",
-        title: "3rd Anniversary Motion Reel",
-        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-        thumbnail: "/projects/motion-reel.jpg",
-      },
+
     ],
   },
   {
@@ -208,15 +180,15 @@ export const WORKS_DATA: WorkCollection[] = [
       {
         id: "game-4",
         type: "tiktok",
-        title: "siapa yang cita citanya kalo udah gede nanam pohon ?? - Roblox",
-        src: "https://www.tiktok.com/@simpangbojack/video/7618959818685975828",
-        thumbnail: "/projects/motion-reel.jpg",
+        title: "siapa mimicnya? - Roblox Deadly Delivery",
+        src: "https://www.tiktok.com/@simpangbojack/video/7597320673618316552",
+        thumbnail: "/projects/mimik.png",
         warning: "Explicit Language & Loud Audio",
       },
       {
         id: "game-5",
         type: "tiktok",
-        title: "Cooking Chaos",
+        title: "Lelaki ketika di dapur - Roblox Cooking Chaos",
         src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
         thumbnail: "/projects/rosblos.png",
         warning: "Explicit Language & Loud Audio",
@@ -253,9 +225,9 @@ export const WORKS_DATA: WorkCollection[] = [
       {
         id: "ds-4",
         type: "image",
-        title: "Social Media Post - Askara",
-        src: "/projects/phe.jpg",
-        thumbnail: "/projects/phe.jpg",
+        title: "Post Human Exhibition Poster",
+        src: "/projects/Eye-witnesses Fajry Radiant.png",
+        thumbnail: "/projects/Eye-witnesses Fajry Radiant.png",
       },
     ],
   },

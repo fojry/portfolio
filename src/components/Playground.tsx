@@ -80,6 +80,22 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   },
   {
     id: "pg-5",
+    title: "NOTIFIKASI",
+    description:
+      "Official trailer and cinematic sequence for the short film NOTIFIKASI (2024).",
+    tags: ["Trailer", "Short Film", "Cinematic"],
+    image: "/projects/POSTER NOTIFIKASI 1;1.png",
+    videoPreview: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).webm",
+    media: {
+      id: "edit-5",
+      type: "Trailer Short Film",
+      title: "NOTIFIKASI (2024) - Short Film",
+      src: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).webm",
+      thumbnail: "/projects/POSTER NOTIFIKASI 1;1.png",
+    },
+  },
+  {
+    id: "pg-6",
     title: "Keluar Dari Semua Level Backroom",
     description:
       "A fast-paced gameplay edit featuring dynamic kinetic subtitles, sound meme timing, and chaotic comedic cuts.",
@@ -91,22 +107,6 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
       title: "Keluar Dari Semua Level Backroom",
       src: "https://youtu.be/fn83zqydST8?si=GCaCcf5554nKuZir",
       thumbnail: "/projects/tamnelbekrum2.png",
-      warning: "Explicit Language & Loud Audio",
-    },
-  },
-  {
-    id: "pg-6",
-    title: "Cooking Chaos",
-    description:
-      "A fast-paced and chaotic cooking video edit with sound timing, visual punchlines, and comedic pacing.",
-    tags: ["Roblox", "Funny Moment", "TikTok Reel"],
-    image: "/projects/rosblos.png",
-    media: {
-      id: "game-5",
-      type: "tiktok",
-      title: "Cooking Chaos",
-      src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
-      thumbnail: "/projects/rosblos.png",
       warning: "Explicit Language & Loud Audio",
     },
   },

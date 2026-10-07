@@ -167,6 +167,35 @@ export default function CollectionDetail({
             </p>
           </div>
 
+          {/* Explicit Content & Loud Audio Warning Banner */}
+          {collection.contentWarning && (
+            <div className={styles.warningBox}>
+              <div className={styles.warningBoxTop}>
+                <span className={styles.warningIconBig}>⚠️</span>
+                <div className={styles.warningBoxContent}>
+                  <div className={styles.warningBoxBadge}>
+                    {collection.contentWarning.badge}
+                  </div>
+                  <h3 className={styles.warningBoxTitle}>
+                    {collection.contentWarning.title}
+                  </h3>
+                  <p className={styles.warningBoxDesc}>
+                    {collection.contentWarning.description}
+                  </p>
+                </div>
+              </div>
+              {collection.contentWarning.tags && (
+                <div className={styles.warningTagsRow}>
+                  {collection.contentWarning.tags.map((tag) => (
+                    <span key={tag} className={styles.warningTag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Quick Collection Switcher Pills if multiple collections */}
           {allCollections.length > 1 && onSelectCollection && (
             <div className={styles.tabsBar} role="tablist">
@@ -261,6 +290,16 @@ export default function CollectionDetail({
                       <span className={styles.authorName}>{author}</span>
                     </div>
                   </div>
+
+                  {/* Warning Badge for Loud Sound / Explicit Language */}
+                  {(item.warning || collection.slug === "edited-gaming-moments") && (
+                    <span
+                      className={styles.cardWarningBadge}
+                      title="Peringatan: Kata-kata kasar & suara keras"
+                    >
+                      ⚠️ 16+ Loud / Explicit
+                    </span>
+                  )}
 
                   {/* Center Play Button Badge (omitted for image and design assets) */}
                   {item.type !== "image" &&

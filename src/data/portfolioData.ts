@@ -1,3 +1,10 @@
+export interface ContentWarning {
+  badge: string;
+  title: string;
+  description: string;
+  tags?: string[];
+}
+
 export interface MediaItem {
   id: string;
   type:
@@ -12,6 +19,7 @@ export interface MediaItem {
   src: string;
   thumbnail?: string;
   sourceHref?: string;
+  warning?: string;
 }
 
 export interface WorkCollection {
@@ -26,6 +34,7 @@ export interface WorkCollection {
   detailTagline: string;
   description: string;
   layout?: "grid" | "centered";
+  contentWarning?: ContentWarning;
   media: MediaItem[];
 }
 
@@ -153,10 +162,17 @@ export const WORKS_DATA: WorkCollection[] = [
     summary:
       "Gameplay edit with subtitles, meme timing, funny moments, and chaotic cuts.",
     accent:
-      "linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(15, 23, 42, 0.95)), radial-gradient(circle at center, rgba(125, 211, 252, 0.32), transparent 44%)",
+      "linear-gradient(135deg, rgba(239, 68, 68, 0.28), rgba(15, 23, 42, 0.95)), radial-gradient(circle at center, rgba(248, 113, 113, 0.28), transparent 44%)",
     detailTagline: "Gaming Edit",
     description:
-      "Subtitle-heavy gameplay videos packed with jokes, meme inserts, and fun moment edits.",
+      "Subtitle-heavy gameplay videos packed with jokes, meme inserts, and chaotic moment edits.",
+    contentWarning: {
+      badge: "⚠️ Content Warning: 16+ / Loud Sound",
+      title: "Peringatan Konten: Kata-Kata Kasar & Loud Sound",
+      description:
+        "Video dalam segmen ini mengandung kata-kata kasar / umpatan (profanity) serta efek audio keras / screamers tiba-tiba. Harap sesuaikan volume headset atau speaker Anda sebelum menonton.",
+      tags: ["Kata-Kata Kasar (Explicit Language)", "Suara Keras / Loud Sound", "Viewer Discretion Advised"],
+    },
     media: [
       {
         id: "game-1",
@@ -164,6 +180,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "Keluar Dari Semua Level Backroom",
         src: "https://youtu.be/fn83zqydST8?si=GCaCcf5554nKuZir",
         thumbnail: "/projects/tamnelbekrum2.png",
+        warning: "Kata-kata kasar & Loud Sound",
       },
       {
         id: "game-2",
@@ -171,6 +188,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "THE WORST GMOD MAP OF 2022 | Garry's Mod Indonesia",
         src: "https://www.youtube.com/watch?v=90fQ5i4pVPY&t=5s",
         thumbnail: "/projects/rosblox.png",
+        warning: "Kata-kata kasar & Loud Sound",
       },
       {
         id: "game-3",
@@ -178,6 +196,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "QiuEnEi #3 ft. Fajry & babu-babu",
         src: "https://youtu.be/OB207sgQwnc?si=XrDV6zdMbpLF5MgO",
         thumbnail: "/projects/phe.jpg",
+        warning: "Kata-kata kasar & Loud Sound",
       },
       {
         id: "game-4",
@@ -185,6 +204,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "siapa yang cita citanya kalo udah gede nanam 🌴 ?? - Roblox",
         src: "https://www.tiktok.com/@simpangbojack/video/7618959818685975828",
         thumbnail: "/projects/motion-reel.jpg",
+        warning: "Kata-kata kasar & Loud Sound",
       },
       {
         id: "game-5",
@@ -192,6 +212,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "Cooking Chaos",
         src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
         thumbnail: "/projects/rosblox.png",
+        warning: "Kata-kata kasar & Loud Sound",
       },
     ],
   },

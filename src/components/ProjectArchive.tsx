@@ -98,6 +98,7 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
       title: "THE WORST GMOD MAP OF 2022 | Garry's Mod Indonesia",
       src: "https://www.youtube.com/watch?v=90fQ5i4pVPY&t=5s",
       thumbnail: "/projects/rosblox.png",
+      warning: "Kata-kata kasar & Loud Sound",
     },
   },
 ];
@@ -170,9 +171,16 @@ export default function ProjectArchive({
             >
               <div className={styles.itemLeft}>
                 <h3 className={styles.itemName}>{item.name}</h3>
-                <span className={styles.itemMeta}>
-                  {item.category} · {item.year}
-                </span>
+                <div className={styles.itemMetaRow}>
+                  <span className={styles.itemMeta}>
+                    {item.category} · {item.year}
+                  </span>
+                  {item.media.warning && (
+                    <span className={styles.itemWarningTag}>
+                      ⚠️ Loud &amp; Explicit
+                    </span>
+                  )}
+                </div>
               </div>
 
               <div className={styles.itemRight}>
@@ -224,6 +232,11 @@ export default function ProjectArchive({
             <span className={styles.previewCategory}>
               {hoveredItem.category}
             </span>
+            {hoveredItem.media.warning && (
+              <span className={styles.previewWarningBadge}>
+                ⚠️ Kata-kata Kasar &amp; Loud Sound
+              </span>
+            )}
           </div>
         </div>
       )}

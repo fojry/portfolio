@@ -99,6 +99,20 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
               isPortrait ? styles.isPortraitMedia : ""
             }`}
           >
+            {item.warning && (
+              <div className={styles.modalWarningBanner}>
+                <span className={styles.modalWarningIcon}>⚠️</span>
+                <div className={styles.modalWarningContent}>
+                  <strong className={styles.modalWarningTitle}>
+                    Peringatan: Kata-Kata Kasar &amp; Loud Sound
+                  </strong>
+                  <span className={styles.modalWarningText}>
+                    Video ini mengandung bahasa/kata-kata kasar serta efek audio keras. Harap sesuaikan volume audio headset atau speaker Anda.
+                  </span>
+                </div>
+              </div>
+            )}
+
             {ytEmbed ? (
               <iframe
                 className={styles.modalEmbed}

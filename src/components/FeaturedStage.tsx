@@ -250,6 +250,12 @@ export default function FeaturedStage({
 
               {/* Bottom Content Info */}
               <div className={styles.stageInfo}>
+                {currentWork.contentWarning && (
+                  <div className={styles.stageWarningPill}>
+                    <span className={styles.warningPillIcon}>⚠️</span>
+                    <span>Peringatan: Kata-kata kasar &amp; loud sound</span>
+                  </div>
+                )}
                 <h3 className={styles.stageTitle}>{currentWork.title}</h3>
                 <p className={styles.stageDesc}>{currentWork.summary}</p>
 

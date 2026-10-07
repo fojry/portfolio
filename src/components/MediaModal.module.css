@@ -63,6 +63,47 @@
   background: #000000;
 }
 
+.modalWarningBanner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.16);
+  border: 1px solid rgba(239, 68, 68, 0.42);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(239, 68, 68, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modalWarningIcon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.modalWarningContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.modalWarningTitle {
+  font-family: var(--font-blinker);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #fca5a5;
+  letter-spacing: 0.02em;
+}
+
+.modalWarningText {
+  font-family: var(--font-sulphur);
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.88);
+}
+
 .isPortraitMedia {
   justify-items: center;
 }

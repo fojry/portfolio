@@ -157,6 +157,103 @@
   margin: 0.25rem 0 0;
 }
 
+/* Explicit Language & Loud Sound Alert Box */
+.warningBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  box-shadow: 0 12px 32px -8px rgba(239, 68, 68, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  max-width: 820px;
+}
+
+.warningBoxTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.warningIconBig {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.warningBoxContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.warningBoxBadge {
+  font-family: var(--font-gilroy);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f87171;
+}
+
+.warningBoxTitle {
+  font-family: var(--font-blinker);
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.warningBoxDesc {
+  font-family: var(--font-sulphur);
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.warningTagsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.warningTag {
+  font-family: var(--font-gilroy);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  color: #fca5a5;
+}
+
+.cardWarningBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  font-family: var(--font-gilroy);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(220, 38, 38, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
 /* Collection Switcher Pills */
 .tabsBar {
   display: flex;

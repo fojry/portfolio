@@ -90,6 +90,7 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
       title: "Keluar Dari Semua Level Backroom",
       src: "https://youtu.be/fn83zqydST8?si=GCaCcf5554nKuZir",
       thumbnail: "/projects/tamnelbekrum2.png",
+      warning: "Kata-kata kasar & Loud Sound",
     },
   },
   {
@@ -105,6 +106,7 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
       title: "Cooking Chaos",
       src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
       thumbnail: "/projects/rosblox.png",
+      warning: "Kata-kata kasar & Loud Sound",
     },
   },
 ];
@@ -170,6 +172,14 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
                   />
                 ) : null}
                 <div className={styles.imageOverlay} />
+                {item.media.warning && (
+                  <span
+                    className={styles.warningTagBadge}
+                    title="Peringatan: Kata-kata kasar & suara keras"
+                  >
+                    ⚠️ 16+ Loud / Explicit
+                  </span>
+                )}
                 <span className={styles.playIcon} aria-hidden="true">
                   {item.media.type === "behance" ? "↗" : "▶"}
                 </span>

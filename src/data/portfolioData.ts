@@ -167,11 +167,11 @@ export const WORKS_DATA: WorkCollection[] = [
     description:
       "Subtitle-heavy gameplay videos packed with jokes, meme inserts, and chaotic moment edits.",
     contentWarning: {
-      badge: "⚠️ Content Warning: 16+ / Loud Sound",
-      title: "Peringatan Konten: Kata-Kata Kasar & Loud Sound",
+      badge: "⚠️ Content Warning: 16+ / Loud Audio",
+      title: "Content Warning: Explicit Language & Loud Audio",
       description:
-        "Video dalam segmen ini mengandung kata-kata kasar / umpatan (profanity) serta efek audio keras / screamers tiba-tiba. Harap sesuaikan volume headset atau speaker Anda sebelum menonton.",
-      tags: ["Kata-Kata Kasar (Explicit Language)", "Suara Keras / Loud Sound", "Viewer Discretion Advised"],
+        "Videos in this collection contain explicit language / profanity and sudden loud audio effects / screamers. Please adjust your headset or speaker volume before watching.",
+      tags: ["Explicit Language", "Loud Audio / Screams", "Viewer Discretion Advised"],
     },
     media: [
       {
@@ -180,7 +180,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "Keluar Dari Semua Level Backroom",
         src: "https://youtu.be/fn83zqydST8?si=GCaCcf5554nKuZir",
         thumbnail: "/projects/tamnelbekrum2.png",
-        warning: "Kata-kata kasar & Loud Sound",
+        warning: "Explicit Language & Loud Audio",
       },
       {
         id: "game-2",
@@ -188,7 +188,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "THE WORST GMOD MAP OF 2022 | Garry's Mod Indonesia",
         src: "https://www.youtube.com/watch?v=90fQ5i4pVPY&t=5s",
         thumbnail: "/projects/rosblox.png",
-        warning: "Kata-kata kasar & Loud Sound",
+        warning: "Explicit Language & Loud Audio",
       },
       {
         id: "game-3",
@@ -196,7 +196,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "QiuEnEi #3 ft. Fajry & babu-babu",
         src: "https://youtu.be/OB207sgQwnc?si=XrDV6zdMbpLF5MgO",
         thumbnail: "/projects/phe.jpg",
-        warning: "Kata-kata kasar & Loud Sound",
+        warning: "Explicit Language & Loud Audio",
       },
       {
         id: "game-4",
@@ -204,7 +204,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "siapa yang cita citanya kalo udah gede nanam 🌴 ?? - Roblox",
         src: "https://www.tiktok.com/@simpangbojack/video/7618959818685975828",
         thumbnail: "/projects/motion-reel.jpg",
-        warning: "Kata-kata kasar & Loud Sound",
+        warning: "Explicit Language & Loud Audio",
       },
       {
         id: "game-5",
@@ -212,7 +212,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "Cooking Chaos",
         src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
         thumbnail: "/projects/rosblox.png",
-        warning: "Kata-kata kasar & Loud Sound",
+        warning: "Explicit Language & Loud Audio",
       },
     ],
   },

@@ -104,10 +104,10 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                 <span className={styles.modalWarningIcon}>⚠️</span>
                 <div className={styles.modalWarningContent}>
                   <strong className={styles.modalWarningTitle}>
-                    Peringatan: Kata-Kata Kasar &amp; Loud Sound
+                    Content Warning: Explicit Language &amp; Loud Audio
                   </strong>
                   <span className={styles.modalWarningText}>
-                    Video ini mengandung bahasa/kata-kata kasar serta efek audio keras. Harap sesuaikan volume audio headset atau speaker Anda.
+                    This video contains explicit language and sudden loud audio effects. Please adjust your audio volume before watching.
                   </span>
                 </div>
               </div>

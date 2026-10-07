@@ -98,7 +98,7 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
       title: "THE WORST GMOD MAP OF 2022 | Garry's Mod Indonesia",
       src: "https://www.youtube.com/watch?v=90fQ5i4pVPY&t=5s",
       thumbnail: "/projects/rosblox.png",
-      warning: "Kata-kata kasar & Loud Sound",
+      warning: "Explicit Language & Loud Audio",
     },
   },
 ];
@@ -234,7 +234,7 @@ export default function ProjectArchive({
             </span>
             {hoveredItem.media.warning && (
               <span className={styles.previewWarningBadge}>
-                ⚠️ Kata-kata Kasar &amp; Loud Sound
+                ⚠️ Explicit Language &amp; Loud Audio
               </span>
             )}
           </div>

@@ -295,7 +295,7 @@ export default function CollectionDetail({
                   {(item.warning || collection.slug === "edited-gaming-moments") && (
                     <span
                       className={styles.cardWarningBadge}
-                      title="Peringatan: Kata-kata kasar & suara keras"
+                      title="Warning: Explicit language & loud audio"
                     >
                       ⚠️ 16+ Loud / Explicit
                     </span>

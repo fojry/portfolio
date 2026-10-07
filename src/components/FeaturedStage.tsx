@@ -253,7 +253,7 @@ export default function FeaturedStage({
                 {currentWork.contentWarning && (
                   <div className={styles.stageWarningPill}>
                     <span className={styles.warningPillIcon}>⚠️</span>
-                    <span>Peringatan: Kata-kata kasar &amp; loud sound</span>
+                    <span>Warning: Explicit Language &amp; Loud Audio</span>
                   </div>
                 )}
                 <h3 className={styles.stageTitle}>{currentWork.title}</h3>

@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
     title: "AETERNA VISUAL SYSTEM",
     category: "Brand Motion Identity",
     year: "2025",
-    image: "/projects/rosblox.png",
+    image: "/projects/rosblos.png",
     client: "Aeterna Luxury Lab",
     deliverables: ["Dynamic Brand Guidelines", "Interactive Visuals", "Promo Teaser"],
     tools: ["Illustrator", "After Effects", "Photoshop"],

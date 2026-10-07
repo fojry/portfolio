@@ -245,7 +245,7 @@ export default function CollectionDetail({
               item.thumbnail ||
               item.src ||
               collection.thumbnailVideo ||
-              "/projects/rosblox.png";
+              "/projects/rosblos.png";
             const author =
               collection.slug === "edited-gaming-moments" ? "bojack" : "Fajry";
             const avatarSrc =

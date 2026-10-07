@@ -88,16 +88,16 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
   },
   {
     id: "arc-6",
-    name: "Garry's Mod Indonesia",
+    name: "GTA ONLINE Indonesia",
     category: "Chaotic Gameplay Edit",
-    year: "2023",
-    image: "/projects/rosblox.png",
+    year: "2026",
+    image: "/projects/GTA.png",
     media: {
       id: "game-2",
       type: "youtube",
-      title: "THE WORST GMOD MAP OF 2022 | Garry's Mod Indonesia",
-      src: "https://www.youtube.com/watch?v=90fQ5i4pVPY&t=5s",
-      thumbnail: "/projects/rosblox.png",
+      title: "GTA ONLINE Indonesia",
+      src: "https://www.youtube.com/watch?v=spPTyAwCiIA",
+      thumbnail: "/projects/GTA.png",
       warning: "Explicit Language & Loud Audio",
     },
   },
@@ -220,7 +220,7 @@ export default function ProjectArchive({
           ))}
         </div>
 
-        {/* Compact View More Button directly below Garry's Mod Indonesia */}
+        {/* Compact View More button below the archive list */}
         <div className={styles.viewMoreRow}>
           <button
             type="button"

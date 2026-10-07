@@ -100,13 +100,13 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
     description:
       "A fast-paced and chaotic cooking video edit with sound timing, visual punchlines, and comedic pacing.",
     tags: ["Roblox", "Funny Moment", "TikTok Reel"],
-    image: "/projects/rosblox.png",
+    image: "/projects/rosblos.png",
     media: {
       id: "game-5",
       type: "tiktok",
       title: "Cooking Chaos",
       src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
-      thumbnail: "/projects/rosblox.png",
+      thumbnail: "/projects/rosblos.png",
       warning: "Explicit Language & Loud Audio",
     },
   },

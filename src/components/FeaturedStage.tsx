@@ -141,7 +141,7 @@ export default function FeaturedStage({
       ? "/projects/bukaruangg.png"
       : currentWork.slug === "edited-gaming-moments"
       ? "/projects/tamnelbekrum2.png"
-      : heroMedia?.thumbnail || "/projects/rosblox.png");
+      : heroMedia?.thumbnail || "/projects/rosblos.png");
 
   return (
     <section className={styles.stageSection} id="works">

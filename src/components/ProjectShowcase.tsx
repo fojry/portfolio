@@ -127,7 +127,24 @@ export default function ProjectShowcase() {
                     {tool}
                   </span>
                 ))}
-                <span className={styles.viewLink}>VIEW CASE →</span>
+                <span className={styles.viewLink}>
+                  <span>VIEW CASE</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "5px" }}
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
               </div>
             </div>
           </article>
@@ -158,7 +175,20 @@ export default function ProjectShowcase() {
                 className={styles.modalClose}
                 aria-label="Close Modal"
               >
-                ✕
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
               </button>
             </div>
 

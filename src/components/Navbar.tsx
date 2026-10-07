@@ -147,7 +147,22 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               onClick={(e) => handleLinkClick(e, "terms")}
               tabIndex={isScrolled ? -1 : 0}
             >
-              TOS<span className={styles.navArrow}>↗</span>
+              TOS
+              <span className={styles.navArrow} aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="11"
+                  height="11"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7" />
+                  <polyline points="7 7 17 7 17 17" />
+                </svg>
+              </span>
               <span className={styles.linkLine} />
             </a>
           </nav>
@@ -284,7 +299,22 @@ export default function Navbar({ onNavClick }: NavbarProps) {
             className={styles.mobileLink}
             onClick={(e) => handleLinkClick(e, "terms")}
           >
-            TOS ↗
+            <span>TOS</span>
+            <svg
+              viewBox="0 0 24 24"
+              width="13"
+              height="13"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "4px" }}
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
           </a>
         </nav>
         <div className={styles.mobileSocials}>

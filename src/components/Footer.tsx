@@ -45,7 +45,21 @@ export default function Footer() {
               data-cursor="explore"
             >
               <span>Say Hello</span>
-              <span className={styles.btnArrow}>↗</span>
+              <span className={styles.btnArrow} aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7" />
+                  <polyline points="7 7 17 7 17 17" />
+                </svg>
+              </span>
             </a>
 
             <button
@@ -111,7 +125,20 @@ export default function Footer() {
             aria-label="Back to top of page"
           >
             <span>Back to top</span>
-            <span>↑</span>
+            <svg
+              viewBox="0 0 24 24"
+              width="13"
+              height="13"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
           </button>
         </div>
 

@@ -201,7 +201,19 @@ export default function ProjectArchive({
               <div className={styles.itemRight}>
                 <span className={styles.itemYearBadge}>{item.year}</span>
                 <span className={styles.itemArrow} aria-hidden="true">
-                  ↗
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
                 </span>
               </div>
             </div>
@@ -218,7 +230,19 @@ export default function ProjectArchive({
           >
             <span>View More</span>
             <span className={styles.viewMoreArrow} aria-hidden="true">
-              ↗
+              <svg
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
             </span>
           </button>
         </div>

@@ -199,7 +199,19 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
                 )}
                 <span className={styles.playIcon} aria-hidden="true">
                   {item.media.type === "behance" ? (
-                    "↗"
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
                   ) : (
                     <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
                       <polygon points="6 4 20 12 6 20 6 4" />

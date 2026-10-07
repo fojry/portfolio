@@ -51,10 +51,17 @@
 }
 
 .itemStar {
-  font-size: clamp(20px, 3vw, 38px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--accent-blue);
   line-height: 1;
-  display: inline-block;
+}
+
+.starSvg {
+  width: clamp(20px, 3.2vw, 36px);
+  height: clamp(20px, 3.2vw, 36px);
+  display: block;
 }
 
 @media (max-width: 767px) {

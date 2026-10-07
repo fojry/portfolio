@@ -393,7 +393,16 @@ export default function CollectionDetail({
                     >
                       {(item.type === "youtube" ||
                         collection.slug === "livestreaming-event") && (
-                        <span className={styles.ytRedIcon}>▶</span>
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="11"
+                          height="11"
+                          fill="#ff0000"
+                          aria-hidden="true"
+                          style={{ display: "inline-block", verticalAlign: "middle" }}
+                        >
+                          <polygon points="6 4 20 12 6 20 6 4" />
+                        </svg>
                       )}
                       <span>{watchText}</span>
                     </a>

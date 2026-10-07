@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { MediaItem } from "@/data/portfolioData";
+import LazyVideo from "@/components/LazyVideo";
 import styles from "./Playground.module.css";
 
 interface PlaygroundItem {
@@ -38,12 +39,12 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
     description:
       "15-second commercial bumper video and motion identity sequence crafted for Sarinah.",
     tags: ["Bumper Video", "Commercial Motion"],
-    videoPreview: "/projects/sarinah15sec.mp4",
+    videoPreview: "/projects/sarinah15sec.webm",
     media: {
       id: "edit-2",
       type: "video",
       title: "Sarinah Bumper Video",
-      src: "/projects/sarinah15sec.mp4",
+      src: "/projects/sarinah15sec.webm",
       thumbnail: "/projects/sarinah.png",
     },
   },
@@ -68,13 +69,13 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
     description:
       "Kinetic typography sequence and motion design exploring expressive type animation and rhythm.",
     tags: ["Kinetic Typography", "Motion Design"],
-    videoPreview: "/projects/hajatan.mp4",
+    videoPreview: "/projects/hajatan.webm",
     media: {
       id: "ds-1",
       type: "video",
       title: "Kinetic Typography Buka Ruang : HajaTan",
-      src: "/projects/hajatan.mp4",
-      thumbnail: "/projects/hajatan.mp4",
+      src: "/projects/hajatan.webm",
+      thumbnail: "/projects/hajatan.webm",
     },
   },
   {
@@ -154,13 +155,14 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
               {/* Media Thumbnail Container with Zoom */}
               <div className={styles.imageContainer}>
                 {item.videoPreview ? (
-                  <video
+                  <LazyVideo
                     src={item.videoPreview}
                     autoPlay
                     muted
                     loop
                     playsInline
                     className={styles.cardVideo}
+                    title={item.title}
                   />
                 ) : item.image ? (
                   <Image

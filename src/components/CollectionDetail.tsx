@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { WorkCollection, MediaItem, CONTACT_EMAIL } from "@/data/portfolioData";
+import LazyVideo from "@/components/LazyVideo";
 import styles from "./CollectionDetail.module.css";
 
 interface CollectionDetailProps {
@@ -255,13 +256,15 @@ export default function CollectionDetail({
                 <div className={styles.previewWrap}>
                   {/* Thumbnail Image or Video Preview */}
                   {thumbSrc.endsWith(".mp4") || thumbSrc.endsWith(".webm") ? (
-                    <video
+                    <LazyVideo
                       src={thumbSrc}
                       className={styles.previewImage}
                       muted
                       playsInline
-                      preload="metadata"
+                      autoPlay={false}
+                      loop={false}
                       style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                      title={item.title}
                     />
                   ) : (
                     <Image

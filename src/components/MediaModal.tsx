@@ -127,8 +127,14 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                 controls
                 autoPlay
                 playsInline
-                src={item.src}
-              />
+                preload="metadata"
+              >
+                <source
+                  src={item.src}
+                  type={item.src.endsWith(".webm") ? "video/webm" : "video/mp4"}
+                />
+                Your browser does not support the video tag.
+              </video>
             ) : item.type === "image" ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img

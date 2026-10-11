@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" fill="none">
+  <defs>
+    <linearGradient id="cover" x1="0" y1="0" x2="1080" y2="1920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#303030"/>
+      <stop offset="1" stop-color="#101010"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#cover)"/>
+  <path d="M-200 350L800 -250M-120 780L1200 -12M-40 1210L1280 418M40 1640L1360 848M120 2070L1440 1278" stroke="#ffffff" stroke-opacity=".035" stroke-width="150"/>
+  <text x="540" y="1100" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="44" font-weight="700">CLIPS &amp; SHORTS</text>
+  <text x="540" y="1170" text-anchor="middle" fill="#aaaaaa" font-family="Arial, sans-serif" font-size="36">@kusnandar.clips</text>
+</svg>

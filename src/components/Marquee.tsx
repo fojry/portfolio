@@ -1,3 +1,7 @@
+"use client";
+
+import { useLanguage } from "./LanguageProvider";
+
 import React from "react";
 import styles from "./Marquee.module.css";
 
@@ -13,13 +17,14 @@ const MARQUEE_ITEMS = [
 ];
 
 export default function Marquee() {
+  const { t } = useLanguage();
   return (
     <div className={styles.marqueeBand} aria-hidden="true">
       <div className={styles.marqueeTrack}>
         <div className={styles.marqueeGroup}>
           {MARQUEE_ITEMS.map((item, i) => (
             <span key={`g1-${i}`} className={styles.marqueeItem}>
-              <span className={styles.itemText}>{item}</span>
+              <span className={styles.itemText}>{t(item)}</span>
               <span className={styles.itemStar} aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
@@ -41,7 +46,7 @@ export default function Marquee() {
         <div className={styles.marqueeGroup} aria-hidden="true">
           {MARQUEE_ITEMS.map((item, i) => (
             <span key={`g2-${i}`} className={styles.marqueeItem}>
-              <span className={styles.itemText}>{item}</span>
+              <span className={styles.itemText}>{t(item)}</span>
               <span className={styles.itemStar} aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"

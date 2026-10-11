@@ -1,5 +1,7 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { MediaItem, WorkCollection, WORKS_DATA } from "@/data/portfolioData";
@@ -115,6 +117,7 @@ export default function ProjectArchive({
   onOpenCollection,
   works = WORKS_DATA,
 }: ProjectArchiveProps) {
+  const { t } = useLanguage();
   const [hoveredItem, setHoveredItem] = useState<ArchiveItem | null>(null);
   const [previewPos, setPreviewPos] = useState({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLElement>(null);
@@ -141,15 +144,12 @@ export default function ProjectArchive({
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.titleRow}>
-            <h2 className={styles.title}>Project Archive</h2>
+            <h2 className={styles.title}>{t("Project Archive")}</h2>
             <span className={styles.countTag}>
               ({String(ARCHIVE_ITEMS.length).padStart(2, "0")})
             </span>
           </div>
-          <p className={styles.subtitle}>
-            A catalog of commercial edits, kinetic ident sequences, and
-            graphic communication projects crafted for digital screens.
-          </p>
+          <p className={styles.subtitle}>{t("A catalog of commercial edits, kinetic ident sequences, and graphic communication projects crafted for digital screens.")}</p>
         </div>
 
         {/* Outline Typography Table List */}
@@ -171,10 +171,10 @@ export default function ProjectArchive({
               }}
             >
               <div className={styles.itemLeft}>
-                <h3 className={styles.itemName}>{item.name}</h3>
+                <h3 className={styles.itemName}>{t(item.name)}</h3>
                 <div className={styles.itemMetaRow}>
                   <span className={styles.itemMeta}>
-                    {item.category} · {item.year}
+                    {t(item.category)} · {item.year}
                   </span>
                   {item.media.warning && (
                     <span className={styles.itemWarningTag}>
@@ -192,9 +192,7 @@ export default function ProjectArchive({
                         <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
                         <line x1="12" y1="9" x2="12" y2="13" />
                         <line x1="12" y1="17" x2="12.01" y2="17" />
-                      </svg>
-                      Loud &amp; Explicit
-                    </span>
+                      </svg>{t("Loud & Explicit")}</span>
                   )}
                 </div>
               </div>
@@ -227,9 +225,9 @@ export default function ProjectArchive({
             type="button"
             className={styles.viewMoreBtn}
             onClick={() => onOpenCollection?.(defaultSlug)}
-            aria-label="View more projects in collection view"
+            aria-label={t("View more projects in collection view")}
           >
-            <span>View More</span>
+            <span>{t("View More")}</span>
             <span className={styles.viewMoreArrow} aria-hidden="true">
               <svg
                 viewBox="0 0 24 24"
@@ -261,16 +259,16 @@ export default function ProjectArchive({
           <div className={styles.previewImageWrap}>
             <Image
               src={hoveredItem.image}
-              alt={hoveredItem.name}
+              alt={t(hoveredItem.name)}
               fill
               sizes="360px"
               className={styles.previewImg}
             />
           </div>
           <div className={styles.previewCaption}>
-            <span className={styles.previewTitle}>{hoveredItem.name}</span>
+            <span className={styles.previewTitle}>{t(hoveredItem.name)}</span>
             <span className={styles.previewCategory}>
-              {hoveredItem.category}
+              {t(hoveredItem.category)}
             </span>
             {hoveredItem.media.warning && (
               <span className={styles.previewWarningBadge}>
@@ -288,9 +286,7 @@ export default function ProjectArchive({
                   <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
                   <line x1="12" y1="9" x2="12" y2="13" />
                   <line x1="12" y1="17" x2="12.01" y2="17" />
-                </svg>
-                Explicit Language &amp; Loud Audio
-              </span>
+                </svg>{t("Explicit Language & Loud Audio")}</span>
             )}
           </div>
         </div>

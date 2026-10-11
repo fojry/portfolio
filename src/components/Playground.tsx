@@ -1,8 +1,10 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React from "react";
 import Image from "next/image";
-import { MediaItem } from "@/data/portfolioData";
+import { MediaItem, NOTIFIKASI_MEDIA } from "@/data/portfolioData";
 import LazyVideo from "@/components/LazyVideo";
 import styles from "./Playground.module.css";
 
@@ -80,19 +82,13 @@ const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   },
   {
     id: "pg-5",
-    title: "NOTIFIKASI",
+    title: "NOTIFIKASI (2024)",
     description:
       "Official trailer and cinematic sequence for the short film NOTIFIKASI (2024).",
     tags: ["Trailer", "Short Film", "Cinematic"],
     image: "/projects/POSTER NOTIFIKASI 1;1.png",
     videoPreview: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).webm",
-    media: {
-      id: "edit-5",
-      type: "Trailer Short Film",
-      title: "NOTIFIKASI (2024) - Short Film",
-      src: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).webm",
-      thumbnail: "/projects/POSTER NOTIFIKASI 1;1.png",
-    },
+    media: NOTIFIKASI_MEDIA,
   },
   {
     id: "pg-6",
@@ -117,23 +113,19 @@ interface PlaygroundProps {
 }
 
 export default function Playground({ onSelectMedia }: PlaygroundProps) {
+  const { t } = useLanguage();
   return (
     <section className={styles.playgroundSection} id="playground">
       <div className={styles.container}>
         {/* Section Header */}
         <div className={styles.header}>
           <p className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} />
-            Since 2024
-          </p>
+            <span className={styles.eyebrowDot} />{t("Since 2024")}</p>
           <div className={styles.titleRow}>
-            <h2 className={styles.title}>Playground</h2>
+            <h2 className={styles.title}>{t("Playground")}</h2>
             <span className={styles.countTag}>({PLAYGROUND_ITEMS.length})</span>
           </div>
-          <p className={styles.subtitle}>
-            A space for self-initiated edits, meme timing, sound syncs, and
-            creative reels shaped by curiosity, rhythm, and fast iteration.
-          </p>
+          <p className={styles.subtitle}>{t("A space for self-initiated edits, meme timing, sound syncs, and creative reels shaped by curiosity, rhythm, and fast iteration.")}</p>
         </div>
 
         {/* Bento Grid */}
@@ -162,12 +154,12 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
                     loop
                     playsInline
                     className={styles.cardVideo}
-                    title={item.title}
+                    title={t(item.title)}
                   />
                 ) : item.image ? (
                   <Image
                     src={item.image}
-                    alt={item.title}
+                    alt={t(item.title)}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className={styles.cardImage}
@@ -177,7 +169,7 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
                 {item.media.warning && (
                   <span
                     className={styles.warningTagBadge}
-                    title="Warning: Explicit language & loud audio"
+                    title={t("Warning: Explicit language & loud audio")}
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -193,9 +185,7 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
                       <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
                       <line x1="12" y1="9" x2="12" y2="13" />
                       <line x1="12" y1="17" x2="12.01" y2="17" />
-                    </svg>
-                    16+ Loud / Explicit
-                  </span>
+                    </svg>{t("16+ Loud / Explicit")}</span>
                 )}
                 <span className={styles.playIcon} aria-hidden="true">
                   {item.media.type === "behance" ? (
@@ -222,15 +212,15 @@ export default function Playground({ onSelectMedia }: PlaygroundProps) {
 
               {/* Card Meta */}
               <div className={styles.cardMeta}>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardDesc}>{item.description}</p>
+                <h3 className={styles.cardTitle}>{t(item.title)}</h3>
+                <p className={styles.cardDesc}>{t(item.description)}</p>
               </div>
 
               {/* Category Pills */}
               <div className={styles.cardTags}>
                 {item.tags.map((tag, idx) => (
                   <span key={idx} className={styles.tagPill}>
-                    {tag}
+                    {t(tag)}
                   </span>
                 ))}
               </div>

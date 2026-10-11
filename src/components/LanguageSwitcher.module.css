@@ -1,0 +1,27 @@
+.select {
+  min-height: 38px;
+  flex-shrink: 0;
+  max-width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #141414;
+  color: #ffffff;
+  color-scheme: dark;
+  font-family: var(--font-gilroy);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.select:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.select:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.select:disabled {
+  cursor: default;
+}

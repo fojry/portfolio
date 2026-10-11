@@ -1,5 +1,7 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./IntroSection.module.css";
 
@@ -49,6 +51,7 @@ const PERSONAS: AudiencePersona[] = [
 ];
 
 export default function IntroSection() {
+  const { t } = useLanguage();
   const [activeId, setActiveId] = useState("anyone");
   const cardRef = useRef<HTMLDivElement>(null);
   const [scrollState, setScrollState] = useState<"below" | "visible" | "passed">("below");
@@ -107,9 +110,9 @@ export default function IntroSection() {
       <div className={styles.container}>
         {/* Left Column: Title & Audience Selector */}
         <div className={styles.leftCol}>
-          <h2 className={styles.sectionTitle}>Intro</h2>
+          <h2 className={styles.sectionTitle}>{t("Intro")}</h2>
 
-          <nav className={styles.personaNav} aria-label="Intro Audience Selector">
+          <nav className={styles.personaNav} aria-label={t("Intro Audience Selector")}>
             {PERSONAS.map((p) => {
               const isActive = p.id === activeId;
               return (
@@ -126,7 +129,7 @@ export default function IntroSection() {
                       isActive ? styles.lineActive : ""
                     }`}
                   />
-                  <span>{p.label}</span>
+                  <span>{t(p.label)}</span>
                 </button>
               );
             })}
@@ -148,13 +151,13 @@ export default function IntroSection() {
             <div className={styles.badgeRow}>
               {currentPersona.tags.map((tag, idx) => (
                 <span key={idx} className={styles.tagBadge}>
-                  {tag}
+                  {t(tag)}
                 </span>
               ))}
             </div>
 
             <p key={currentPersona.id} className={styles.statementText}>
-              {currentPersona.statement}
+              {t(currentPersona.statement)}
             </p>
 
             <div className={styles.cardFooter}>
@@ -172,13 +175,9 @@ export default function IntroSection() {
                 >
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                   <circle cx="12" cy="10" r="3" />
-                </svg>
-                Jakarta, Indonesia &amp; Remote Available
-              </span>
+                </svg>{t("Jakarta, Indonesia & Remote Available")}</span>
               <span className={styles.statusLive}>
-                <span className={styles.livePulse} />
-                Open for Projects
-              </span>
+                <span className={styles.livePulse} />{t("Open for Projects")}</span>
             </div>
           </div>
         </div>

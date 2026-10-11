@@ -308,7 +308,14 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
   gap: 1.75rem;
+}
+
+.grid.portraitGrid {
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
 }
 
 /* Media Card */
@@ -332,6 +339,45 @@
     0 0 26px -6px rgba(144, 197, 255, 0.2);
 }
 
+.featuredCard {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22),
+    0 0 24px rgba(255, 255, 255, 0.1);
+}
+
+.featuredCard:hover,
+.featuredCard:focus-visible {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45),
+    0 0 28px rgba(255, 255, 255, 0.16);
+}
+
+.featuredCard:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 5px;
+}
+
+.featuredBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #ffffff;
+  color: #080808;
+  font-family: var(--font-gilroy);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.featuredAwardCount {
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+
 /* Preview Section (16:9) */
 .previewWrap {
   position: relative;
@@ -339,6 +385,10 @@
   aspect-ratio: 16 / 9;
   background: #000000;
   overflow: hidden;
+}
+
+.portraitCard .previewWrap {
+  aspect-ratio: 9 / 16;
 }
 
 .previewImage {
@@ -637,6 +687,11 @@
 }
 
 @media (max-width: 700px) {
+  .grid.portraitGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
   .topbar {
     padding: 0.85rem 1rem;
     gap: 0.75rem;
@@ -717,4 +772,77 @@
     padding: 5px 12px;
     font-size: 11px;
   }
+}
+
+/* Compact short-form cards retain the original 9:16 preview ratio. */
+.portraitGrid .card {
+  min-width: 0;
+  border-radius: 14px;
+}
+
+.portraitGrid .metaRow {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 10px;
+  gap: 8px;
+}
+
+.portraitGrid .cardTitle {
+  font-size: 14px;
+  min-height: 2.7em;
+}
+
+.portraitGrid .platformText {
+  font-size: 10px;
+}
+
+.portraitGrid .openBtn {
+  align-self: flex-start;
+  min-height: 32px;
+  padding: 5px 12px;
+  font-size: 10px;
+}
+
+.portraitGrid .authorBadge {
+  top: 10px;
+  left: 10px;
+  right: 10px;
+}
+
+.portraitGrid .authorVideoTitle {
+  display: none;
+}
+
+.portraitGrid .authorName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portraitGrid .cardWarningBadge {
+  top: auto;
+  bottom: 52px;
+  font-size: 9px;
+  padding: 3px 6px;
+}
+
+.portraitGrid .previewBottomBar {
+  justify-content: center;
+}
+
+.portraitGrid .linkIconBubble {
+  display: none;
+}
+
+.portraitGrid .watchPlatformChip {
+  max-width: 100%;
+  padding: 6px 10px;
+  font-size: 10px;
+}
+
+.topbar { gap: 1rem; }
+
+@media (max-width: 900px) {
+  .topbar { flex-wrap: wrap; }
+  .socialNav { order: 3; flex-basis: 100%; max-width: 100%; }
 }

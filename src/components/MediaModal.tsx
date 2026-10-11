@@ -1,5 +1,7 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useEffect, useCallback } from "react";
 import styles from "./MediaModal.module.css";
 import { MediaItem } from "@/data/portfolioData";
@@ -33,6 +35,7 @@ function getYouTubeEmbedUrl(url: string): string | null {
 }
 
 export default function MediaModal({ item, onClose }: MediaModalProps) {
+  const { t } = useLanguage();
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -59,6 +62,7 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
   if (!item) return null;
 
   const isPortrait =
+    item.aspectRatio === "9:16" ||
     item.type === "tiktok" ||
     (item.type === "youtube" && item.src.includes("shorts")) ||
     (item.type === "instagram" && item.src.includes("reel"));
@@ -81,17 +85,15 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
       }}
       role="dialog"
       aria-modal="true"
-      aria-label={item.title}
+      aria-label={t(item.title)}
     >
       <div className={styles.mediaModal}>
         <button
           className={styles.modalClose}
           type="button"
           onClick={onClose}
-          aria-label="Close media"
-        >
-          Close
-        </button>
+          aria-label={t("Close media")}
+        >{t("Close")}</button>
 
         <div className={styles.modalBody}>
           <div
@@ -117,12 +119,8 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                   <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
                 <div className={styles.modalWarningContent}>
-                  <strong className={styles.modalWarningTitle}>
-                    Content Warning: Explicit Language &amp; Loud Audio
-                  </strong>
-                  <span className={styles.modalWarningText}>
-                    This video contains explicit language and sudden loud audio effects. Please adjust your audio volume before watching.
-                  </span>
+                  <strong className={styles.modalWarningTitle}>{t("Content Warning: Explicit Language & Loud Audio")}</strong>
+                  <span className={styles.modalWarningText}>{t("This video contains explicit language and sudden loud audio effects. Please adjust your audio volume before watching.")}</span>
                 </div>
               </div>
             )}
@@ -131,7 +129,7 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
               <iframe
                 className={styles.modalEmbed}
                 src={ytEmbed}
-                title={item.title}
+                title={t(item.title)}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -139,6 +137,7 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
               <video
                 className={styles.modalEmbed}
                 controls
+                poster={item.thumbnail}
                 autoPlay
                 playsInline
                 preload="metadata"
@@ -146,15 +145,13 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                 <source
                   src={item.src}
                   type={item.src.endsWith(".webm") ? "video/webm" : "video/mp4"}
-                />
-                Your browser does not support the video tag.
-              </video>
+                />{t("Your browser does not support the video tag.")}</video>
             ) : item.type === "image" ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 className={styles.modalImage}
                 src={item.src}
-                alt={item.title}
+                alt={t(item.title)}
               />
             ) : item.type === "behance" || item.src.includes("behance.net") ? (
               <div className={styles.behanceCard}>
@@ -164,7 +161,7 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                     <img
                       className={styles.behanceImage}
                       src={item.thumbnail}
-                      alt={item.title}
+                      alt={t(item.title)}
                     />
                     <div className={styles.behanceImageOverlay} />
                   </div>
@@ -172,19 +169,17 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                 <div className={styles.behanceContent}>
                   <div className={styles.behanceBadge}>
                     <span className={styles.behanceBadgeIcon}>Bē</span>
-                    <span>Behance Project</span>
+                    <span>{t("Behance Project")}</span>
                   </div>
-                  <h2 className={styles.behanceTitle}>{item.title}</h2>
-                  <p className={styles.behanceDesc}>
-                    Lihat dokumentasi visual, sinematografi, dan stills lengkap dari proyek ini langsung di Behance.
-                  </p>
+                  <h2 className={styles.behanceTitle}>{t(item.title)}</h2>
+                  <p className={styles.behanceDesc}>{t("View the full visual documentation, cinematography, and stills for this project on Behance.")}</p>
                   <a
                     className={styles.behanceCta}
                     href={item.src}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <span>View on Behance</span>
+                    <span>{t("View on Behance")}</span>
                     <svg
                       viewBox="0 0 24 24"
                       width="14"
@@ -214,13 +209,48 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                 }}
               >
                 <p style={{ margin: 0, fontSize: "1.1rem", fontWeight: 700 }}>
-                  {item.title}
+                  {t(item.title)}
                 </p>
-                <p style={{ margin: 0, color: "var(--muted)" }}>
-                  Direct playback for {item.type} can be viewed directly on the
-                  platform.
-                </p>
+                <p style={{ margin: 0, color: "var(--muted)" }}>{t("Watch this video directly on its original platform.")}</p>
               </div>
+            )}
+
+            {item.description && (
+              <section className={styles.projectDetails} aria-label={t("Project information")}>
+                <h2 className={styles.projectTitle}>{t(item.title)}</h2>
+                <p className={styles.projectDescription}>{t(item.description)}</p>
+                {item.roles && item.roles.length > 0 && (
+                  <div className={styles.projectSection}>
+                    <h3 className={styles.projectSectionTitle}>{t("My Role")}</h3>
+                    <ul className={styles.roleList}>
+                      {item.roles.map((role) => <li key={role}>{t(role)}</li>)}
+                    </ul>
+                  </div>
+                )}
+                {item.achievements && item.achievements.length > 0 && (
+                  <div className={styles.projectSection}>
+                    <h3 className={styles.projectSectionTitle}>{t("Film Achievements")}</h3>
+                    {item.achievementEvent && (
+                      <p className={styles.achievementEvent}>{t(item.achievementEvent)}</p>
+                    )}
+                    <ul className={styles.achievementList}>
+                      {item.achievements.map((achievement) => (
+                        <li key={achievement}>
+                          <span className={styles.awardMark} aria-hidden="true">✦</span>
+                          <span>{t(achievement)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {item.achievementsSourceHref && (
+                      <a className={styles.achievementSource} href={item.achievementsSourceHref} target="_blank" rel="noopener noreferrer">{t("Award coverage ↗")}</a>
+                    )}
+                  </div>
+                )}
+                {item.sourceHref && (
+                  <a className={styles.projectCta} href={item.sourceHref} target="_blank" rel="noopener noreferrer">{t("View on Behance")}{" "}<span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </section>
             )}
 
             {item.type !== "behance" && !item.src.includes("behance.net") && (
@@ -229,9 +259,7 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
                 href={item.src}
                 target="_blank"
                 rel="noreferrer"
-              >
-                Open original
-              </a>
+              >{t("Open original")}</a>
             )}
           </div>
         </div>

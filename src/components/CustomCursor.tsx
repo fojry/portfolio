@@ -1,9 +1,12 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useEffect, useState, useRef } from "react";
 import styles from "./CustomCursor.module.css";
 
 export default function CustomCursor() {
+  const { t } = useLanguage();
   const [enabled, setEnabled] = useState(false);
   const [cursorText, setCursorText] = useState("");
   const [isHovering, setIsHovering] = useState(false);
@@ -89,7 +92,7 @@ export default function CustomCursor() {
       <div className={styles.cursorDot}>
         {cursorText && (
           <span className={styles.cursorLabel}>
-            {cursorText.split("\n").map((line, i) => (
+            {t(cursorText).split("\n").map((line, i) => (
               <React.Fragment key={i}>
                 {line}
                 {i === 0 && cursorText.includes("\n") && <br />}

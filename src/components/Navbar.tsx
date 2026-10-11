@@ -1,16 +1,20 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CONTACT_EMAIL } from "@/data/portfolioData";
 import styles from "./Navbar.module.css";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavbarProps {
   onNavClick?: (targetId: string) => void;
 }
 
 export default function Navbar({ onNavClick }: NavbarProps) {
+  const { t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -78,8 +82,8 @@ export default function Navbar({ onNavClick }: NavbarProps) {
           href="#top"
           className={`${styles.brand} ${isScrolled ? styles.brandScrolled : ""}`}
           onClick={(e) => handleLinkClick(e, "top")}
-          aria-label={isScrolled ? "Scroll to top" : "Home"}
-          title={isScrolled ? "Scroll back to top" : undefined}
+          aria-label={isScrolled ? t("Scroll to top") : t("Home")}
+          title={isScrolled ? t("Scroll back to top") : undefined}
         >
           <div className={styles.avatarWrap}>
             <Image
@@ -90,7 +94,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               className={styles.avatarImg}
               priority
             />
-            <span className={styles.statusDot} aria-label="Available for work" />
+            <span className={styles.statusDot} aria-label={t("Available for work")} />
           </div>
           <span className={styles.brandName}>
             Fajry Radiant<span className={styles.brandDot}>.</span>
@@ -104,51 +108,41 @@ export default function Navbar({ onNavClick }: NavbarProps) {
           }`}
           aria-hidden={isScrolled}
         >
-          <nav className={styles.navLinks} aria-label="Main Navigation">
+          <nav className={styles.navLinks} aria-label={t("Main Navigation")}>
             <a
               href="#works"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "works")}
               tabIndex={isScrolled ? -1 : 0}
-            >
-              Works
-              <span className={styles.linkLine} />
+            >{t("Works")}<span className={styles.linkLine} />
             </a>
             <a
               href="#about"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "about")}
               tabIndex={isScrolled ? -1 : 0}
-            >
-              About
-              <span className={styles.linkLine} />
+            >{t("About")}<span className={styles.linkLine} />
             </a>
             <a
               href="#playground"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "playground")}
               tabIndex={isScrolled ? -1 : 0}
-            >
-              Playground
-              <span className={styles.linkLine} />
+            >{t("Playground")}<span className={styles.linkLine} />
             </a>
             <a
               href="#archive"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "archive")}
               tabIndex={isScrolled ? -1 : 0}
-            >
-              Archive
-              <span className={styles.linkLine} />
+            >{t("Archive")}<span className={styles.linkLine} />
             </a>
             <a
               href="#terms"
               className={styles.navLink}
               onClick={(e) => handleLinkClick(e, "terms")}
               tabIndex={isScrolled ? -1 : 0}
-            >
-              TOS
-              <span className={styles.navArrow} aria-hidden="true">
+            >{t("TOS")}<span className={styles.navArrow} aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
                   width="11"
@@ -168,6 +162,8 @@ export default function Navbar({ onNavClick }: NavbarProps) {
           </nav>
 
           <span className={styles.divider} aria-hidden="true" />
+
+          <LanguageSwitcher disabled={isScrolled} />
 
           {/* Social Icons */}
           <div className={styles.socialGroup}>
@@ -195,7 +191,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
               href={`mailto:${CONTACT_EMAIL}`}
               aria-label="Email"
               className={styles.socialIcon}
-              title="Email me"
+              title={t("Email me")}
               tabIndex={isScrolled ? -1 : 0}
             >
               <svg viewBox="0 0 48 48" width="22" height="22">
@@ -244,7 +240,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
         {/* Mobile Hamburger Button */}
         <button
           type="button"
-          aria-label="Toggle Menu"
+          aria-label={t("Toggle Menu")}
           aria-expanded={mobileOpen}
           className={`${styles.mobileBtn} ${
             isScrolled ? styles.mobileBtnHidden : ""
@@ -261,6 +257,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
 
       {/* Mobile Dropdown Panel */}
       <div
+        inert={!mobileOpen || isScrolled}
         className={`${styles.mobilePanel} ${
           mobileOpen && !isScrolled ? styles.mobilePanelActive : ""
         }`}
@@ -270,36 +267,28 @@ export default function Navbar({ onNavClick }: NavbarProps) {
             href="#works"
             className={styles.mobileLink}
             onClick={(e) => handleLinkClick(e, "works")}
-          >
-            Works
-          </a>
+          >{t("Works")}</a>
           <a
             href="#about"
             className={styles.mobileLink}
             onClick={(e) => handleLinkClick(e, "about")}
-          >
-            About
-          </a>
+          >{t("About")}</a>
           <a
             href="#playground"
             className={styles.mobileLink}
             onClick={(e) => handleLinkClick(e, "playground")}
-          >
-            Playground
-          </a>
+          >{t("Playground")}</a>
           <a
             href="#archive"
             className={styles.mobileLink}
             onClick={(e) => handleLinkClick(e, "archive")}
-          >
-            Archive
-          </a>
+          >{t("Archive")}</a>
           <a
             href="#terms"
             className={styles.mobileLink}
             onClick={(e) => handleLinkClick(e, "terms")}
           >
-            <span>TOS</span>
+            <span>{t("TOS")}</span>
             <svg
               viewBox="0 0 24 24"
               width="13"
@@ -317,6 +306,7 @@ export default function Navbar({ onNavClick }: NavbarProps) {
             </svg>
           </a>
         </nav>
+        <LanguageSwitcher disabled={!mobileOpen || isScrolled} />
         <div className={styles.mobileSocials}>
           <a
             href="https://www.instagram.com/fajryradiant/"

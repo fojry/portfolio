@@ -114,7 +114,7 @@ export default function Home() {
       <Navbar onNavClick={handleScrollTo} />
 
       <main className={styles.main}>
-        {/* 1. Hero Section with Blinking Caret */}
+        {/* 1. Animated logo hero */}
         <Hero onScrollDown={() => handleScrollTo("works")} />
 
         {/* 2. High-Contrast White Marquee Band */}

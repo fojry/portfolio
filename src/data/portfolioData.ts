@@ -18,8 +18,16 @@ export interface MediaItem {
   title: string;
   src: string;
   thumbnail?: string;
+  author?: string;
+  aspectRatio?: "9:16" | "16:9";
   sourceHref?: string;
   warning?: string;
+  featured?: boolean;
+  description?: string;
+  roles?: string[];
+  achievementEvent?: string;
+  achievements?: string[];
+  achievementsSourceHref?: string;
 }
 
 export interface WorkCollection {
@@ -38,6 +46,47 @@ export interface WorkCollection {
   media: MediaItem[];
 }
 
+export const NOTIFIKASI_MEDIA: MediaItem = {
+  featured: true,
+  id: "edit-5",
+  type: "Trailer Short Film",
+  title: "NOTIFIKASI (2024) - Short Film",
+  src: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).webm",
+  thumbnail: "/projects/POSTER NOTIFIKASI 1;1.png",
+  sourceHref: "https://www.behance.net/gallery/217899999/Portofolio",
+  description:
+    "NOTIFIKASI is a 2024 short film produced by Klub Gawesiki. Fajry Radiant Adithya contributed as director, co-writer, and co-editor. The project received four awards at Festival Film Banyumas 2024. Watch the official trailer and explore the production portfolio on Behance.",
+  roles: ["Director", "Co-Writer", "Co-Editor"],
+  achievementEvent: "Festival Film Banyumas 2024",
+  achievements: [
+    "Best Film",
+    "Best Director",
+    "Best Cinematography",
+    "Best Male Actor",
+  ],
+  achievementsSourceHref:
+    "https://purwokerto.telkomuniversity.ac.id/prestasi-gemilang-askara-creative-lab-ittp-sabet-beragam-penghargaan-di-festival-film-banyumas-2024/",
+};
+
+export const GAMING_SHORTS_MEDIA: MediaItem[] = [
+  {
+    id: "game-4",
+    type: "tiktok",
+    title: "siapa mimicnya? - Roblox Deadly Delivery",
+    src: "https://www.tiktok.com/@simpangbojack/video/7597320673618316552",
+    thumbnail: "/projects/mimik.png",
+    warning: "Explicit Language & Loud Audio",
+  },
+  {
+    id: "game-5",
+    type: "tiktok",
+    title: "Lelaki ketika di dapur - Roblox Cooking Chaos",
+    src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
+    thumbnail: "/projects/rosblos.png",
+    warning: "Explicit Language & Loud Audio",
+  },
+];
+
 export const WORKS_DATA: WorkCollection[] = [
   {
     slug: "short-film-videography",
@@ -52,6 +101,7 @@ export const WORKS_DATA: WorkCollection[] = [
     description:
       "A curated collection of short films, narrative visual storytelling, cinematic camera work, and video production projects.",
     media: [
+      NOTIFIKASI_MEDIA,
       {
         id: "latisan-film",
         type: "behance",
@@ -88,13 +138,6 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "RECAP - KLUB GAWESIKI",
         src: "/projects/tesrecap1.webm",
         thumbnail: "/projects/gawsiiki.png",
-      },
-      {
-        id: "edit-5",
-        type: "Trailer Short Film",
-        title: "NOTIFIKASI (2024) - Short Film",
-        src: "/projects/OFFICIAL TRAILER - NOTIFIKASI (2024).webm",
-        thumbnail: "/projects/POSTER NOTIFIKASI 1;1.png",
       },
       {
         id: "edit-6",
@@ -177,22 +220,61 @@ export const WORKS_DATA: WorkCollection[] = [
         thumbnail: "/projects/tamnel1.png",
         warning: "Explicit Language & Loud Audio",
       },
+      ...GAMING_SHORTS_MEDIA,
+    ],
+  },
+  {
+    slug: "clips-shorts",
+    label: "Clips & Shorts",
+    title: "Clips & Shorts",
+    summary:
+      "Short-form edits, educational clips, gaming highlights, and expressive subtitles.",
+    accent:
+      "linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(10, 10, 10, 0.96))",
+    detailTagline: "Short-Form Edits",
+    description:
+      "A collection of educational videos and gaming highlights, shaped with clear subtitles, rhythmic editing, and short-form storytelling.",
+    contentWarning: {
+      badge: "Content Warning: 16+ / Loud Audio",
+      title: "Content Warning: Explicit Language & Loud Audio",
+      description:
+        "Some gaming clips in this collection contain explicit language and sudden loud audio effects. Please adjust your headset or speaker volume before watching.",
+      tags: ["Explicit Language", "Loud Audio / Screams", "Viewer Discretion Advised"],
+    },
+    media: [
       {
-        id: "game-4",
+        id: "kusnandar-7677103336830684437",
         type: "tiktok",
-        title: "siapa mimicnya? - Roblox Deadly Delivery",
-        src: "https://www.tiktok.com/@simpangbojack/video/7597320673618316552",
-        thumbnail: "/projects/mimik.png",
-        warning: "Explicit Language & Loud Audio",
+        title: "Niko x Kopi ABC - Podcast Raditya Dika",
+        author: "@kusnandar.clips",
+        src: "https://www.tiktok.com/@kusnandar.clips/video/7677103336830684437",
+        thumbnail: "/projects/KOPIABC.png",
       },
       {
-        id: "game-5",
+        id: "kusnandar-7676844048597929236",
         type: "tiktok",
-        title: "Lelaki ketika di dapur - Roblox Cooking Chaos",
-        src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
-        thumbnail: "/projects/rosblos.png",
-        warning: "Explicit Language & Loud Audio",
+        title: "NIKO AKHIRNYA DATANG KE PODCAST RADIT",
+        author: "@kusnandar.clips",
+        src: "https://www.tiktok.com/@kusnandar.clips/video/7676844048597929236",
+        thumbnail: "/projects/kOPIabc2.png",
       },
+      {
+        id: "jt-1",
+        type: "video",
+        title: "Soal TKA - Mantappu Academy",
+        src: "/projects/JT1-web.mp4",
+        thumbnail: "/projects/jt1-thumbnail.jpg",
+        aspectRatio: "9:16",
+      },
+      {
+        id: "jt-2",
+        type: "video",
+        title: "Penjelasan Segitiga - Mantappu Academy",
+        src: "/projects/JT2-web.mp4",
+        thumbnail: "/projects/jt2-thumbnail.jpg",
+        aspectRatio: "9:16",
+      },
+      ...GAMING_SHORTS_MEDIA,
     ],
   },
   {

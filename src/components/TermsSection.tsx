@@ -1,21 +1,21 @@
+"use client";
+
+import { useLanguage } from "./LanguageProvider";
+
 import React from "react";
 import { TERMS_OF_SERVICE } from "@/data/portfolioData";
 import styles from "./TermsSection.module.css";
 
 export default function TermsSection() {
+  const { t } = useLanguage();
   return (
     <section className={styles.termsSection} id="terms">
       <div className={styles.container}>
         <div className={styles.header}>
           <p className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} />
-            Guidelines &amp; Policy
-          </p>
-          <h2 className={styles.title}>Terms of Service</h2>
-          <p className={styles.subtitle}>
-            Clear collaboration guidelines and expectations to ensure every
-            project moves forward smoothly from initial concept to master export.
-          </p>
+            <span className={styles.eyebrowDot} />{t("Guidelines & Policy")}</p>
+          <h2 className={styles.title}>{t("Terms of Service")}</h2>
+          <p className={styles.subtitle}>{t("Clear collaboration guidelines and expectations to ensure every project moves forward smoothly from initial concept to master export.")}</p>
         </div>
 
         <div className={styles.termsGrid}>
@@ -24,7 +24,7 @@ export default function TermsSection() {
               <span className={styles.cardIndex}>
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <p className={styles.cardText}>{term}</p>
+              <p className={styles.cardText}>{t(term)}</p>
             </div>
           ))}
         </div>

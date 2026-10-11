@@ -1,5 +1,7 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { WorkCollection, MediaItem } from "@/data/portfolioData";
@@ -16,6 +18,7 @@ export default function FeaturedStage({
   onSelectMedia,
   onOpenCollection,
 }: FeaturedStageProps) {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"next" | "prev" | "none">("none");
   const [animatingKey, setAnimatingKey] = useState(0);
@@ -149,14 +152,9 @@ export default function FeaturedStage({
         {/* Header */}
         <div className={styles.headerWrap}>
           <p className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} />
-            Since 2022
-          </p>
-          <h2 className={styles.title}>Featured Work</h2>
-          <p className={styles.subtitle}>
-            A curated showcase of video production, rhythm-driven gaming edits,
-            kinetic motion graphics, and visual design systems.
-          </p>
+            <span className={styles.eyebrowDot} />{t("Since 2022")}</p>
+          <h2 className={styles.title}>{t("Featured Work")}</h2>
+          <p className={styles.subtitle}>{t("A curated showcase of video production, rhythm-driven gaming edits, kinetic motion graphics, and visual design systems.")}</p>
         </div>
 
         {/* Center Stage Card & Arrows */}
@@ -165,7 +163,7 @@ export default function FeaturedStage({
             type="button"
             className={styles.navBtn}
             onClick={handlePrev}
-            aria-label="Previous work"
+            aria-label={t("Previous work")}
           >
             <svg
               viewBox="0 0 24 24"
@@ -226,7 +224,7 @@ export default function FeaturedStage({
               <div className={styles.imageLayer}>
                 <Image
                   src={thumbnailSrc}
-                  alt={currentWork.title}
+                  alt={t(currentWork.title)}
                   fill
                   sizes="(max-width: 1024px) 100vw, 1200px"
                   className={styles.stageImage}
@@ -245,7 +243,7 @@ export default function FeaturedStage({
 
               {/* Top-right Tag */}
               <span className={styles.categoryBadge}>
-                {currentWork.detailTagline}
+                {t(currentWork.detailTagline)}
               </span>
 
               {/* Bottom Content Info */}
@@ -267,11 +265,11 @@ export default function FeaturedStage({
                       <line x1="12" y1="9" x2="12" y2="13" />
                       <line x1="12" y1="17" x2="12.01" y2="17" />
                     </svg>
-                    <span>Warning: Explicit Language &amp; Loud Audio</span>
+                    <span>{t("Warning: Explicit Language & Loud Audio")}</span>
                   </div>
                 )}
-                <h3 className={styles.stageTitle}>{currentWork.title}</h3>
-                <p className={styles.stageDesc}>{currentWork.summary}</p>
+                <h3 className={styles.stageTitle}>{t(currentWork.title)}</h3>
+                <p className={styles.stageDesc}>{t(currentWork.summary)}</p>
 
                 <div className={styles.stageActions}>
                   <span
@@ -289,7 +287,7 @@ export default function FeaturedStage({
                       }
                     }}
                   >
-                    <span>Explore Collection ({currentWork.media.length})</span>
+                    <span>{t("Explore Collection")} ({currentWork.media.length})</span>
                     <span className={styles.arrowIcon} aria-hidden="true">
                       <svg
                         viewBox="0 0 24 24"
@@ -330,7 +328,7 @@ export default function FeaturedStage({
                             <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
                             <circle cx="12" cy="12" r="3" />
                           </svg>
-                          <span>View Preview</span>
+                          <span>{t("View Preview")}</span>
                         </>
                       ) : (
                         <>
@@ -343,7 +341,7 @@ export default function FeaturedStage({
                           >
                             <polygon points="5 3 19 12 5 21 5 3" />
                           </svg>
-                          <span>Play Preview</span>
+                          <span>{t("Play Preview")}</span>
                         </>
                       )}
                     </span>
@@ -357,7 +355,7 @@ export default function FeaturedStage({
             type="button"
             className={styles.navBtn}
             onClick={handleNext}
-            aria-label="Next work"
+            aria-label={t("Next work")}
           >
             <svg
               viewBox="0 0 24 24"
@@ -389,7 +387,7 @@ export default function FeaturedStage({
                 }`}
                 onClick={() => handleTabClick(idx)}
               >
-                {work.label}
+                {t(work.label)}
               </button>
             );
           })}

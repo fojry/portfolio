@@ -1,10 +1,13 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useState } from "react";
 import { CONTACT_EMAIL } from "@/data/portfolioData";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const email = CONTACT_EMAIL;
 
@@ -19,9 +22,9 @@ export default function Footer() {
   };
 
   const mailtoHref = `mailto:${email}?subject=${encodeURIComponent(
-    "Say Hello — Project Inquiry"
+    t("Say Hello — Project Inquiry")
   )}&body=${encodeURIComponent(
-    "Hi Fajry,\n\nI came across your portfolio and would like to talk about a project:\n\n"
+    t("Hi Fajry,\n\nI came across your portfolio and would like to talk about a project:\n\n")
   )}`;
 
   return (
@@ -31,12 +34,10 @@ export default function Footer() {
         <div className={styles.ctaBlock}>
           <div className={styles.statusPill}>
             <span className={styles.statusDot} />
-            <span>Available for freelance commissions &amp; creative roles</span>
+            <span>{t("Available for freelance commissions & creative roles")}</span>
           </div>
 
-          <h2 className={styles.ctaTitle}>
-            Let&apos;s create something memorable together.
-          </h2>
+          <h2 className={styles.ctaTitle}>{t("Let's create something memorable together.")}</h2>
 
           <div className={styles.ctaActions}>
             <a
@@ -44,7 +45,7 @@ export default function Footer() {
               className={styles.emailBtn}
               data-cursor="explore"
             >
-              <span>Say Hello</span>
+              <span>{t("Say Hello")}</span>
               <span className={styles.btnArrow} aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
@@ -66,9 +67,9 @@ export default function Footer() {
               type="button"
               onClick={handleCopyEmail}
               className={styles.copyBtn}
-              aria-label="Copy email address"
+              aria-label={t("Copy email address")}
             >
-              <span>{copied ? "Copied to clipboard!" : email}</span>
+              <span>{copied ? t("Copied to clipboard!") : email}</span>
             </button>
           </div>
         </div>
@@ -122,9 +123,9 @@ export default function Footer() {
             type="button"
             onClick={scrollToTop}
             className={styles.topBtn}
-            aria-label="Back to top of page"
+            aria-label={t("Back to top of page")}
           >
-            <span>Back to top</span>
+            <span>{t("Back to top")}</span>
             <svg
               viewBox="0 0 24 24"
               width="13"
@@ -145,9 +146,7 @@ export default function Footer() {
         {/* Bottom Credits */}
         <div className={styles.bottomBar}>
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} Fajry Radiant Adithya. Crafted with
-            care &amp; inspired by Jingjing Han Design System.
-          </p>
+            &copy; {new Date().getFullYear()}{" "}{t("Fajry Radiant Adithya. Crafted with care & inspired by Jingjing Han Design System.")}</p>
           <p className={styles.timezone}>Jakarta, ID (GMT+7)</p>
         </div>
       </div>

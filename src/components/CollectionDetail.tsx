@@ -1,11 +1,14 @@
 "use client";
 
+import { useLanguage } from "./LanguageProvider";
+
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { WorkCollection, MediaItem, CONTACT_EMAIL } from "@/data/portfolioData";
 import LazyVideo from "@/components/LazyVideo";
 import styles from "./CollectionDetail.module.css";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface CollectionDetailProps {
   collection: WorkCollection;
@@ -22,6 +25,7 @@ export default function CollectionDetail({
   onSelectMedia,
   onSelectCollection,
 }: CollectionDetailProps) {
+  const { t } = useLanguage();
   // Handle escape key to go back
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -79,7 +83,7 @@ export default function CollectionDetail({
       className={styles.viewOverlay}
       role="dialog"
       aria-modal="true"
-      aria-label={collection.title}
+      aria-label={t(collection.title)}
     >
       {/* Topbar Navigation matching SECONDSLIDE.png */}
       <header className={styles.topbar}>
@@ -94,7 +98,7 @@ export default function CollectionDetail({
           FAJRY RADIANT
         </Link>
 
-        <nav className={styles.socialNav} aria-label="Social Links">
+        <nav className={styles.socialNav} aria-label={t("Social Links")}>
           <a
             href="https://www.instagram.com/fajryradiant/"
             target="_blank"
@@ -142,6 +146,7 @@ export default function CollectionDetail({
             Saweria
           </a>
         </nav>
+        <LanguageSwitcher />
       </header>
 
       {/* Main Content Area */}
@@ -152,19 +157,19 @@ export default function CollectionDetail({
             type="button"
             className={styles.backBtn}
             onClick={onBack}
-            aria-label="Back to homepage"
+            aria-label={t("Back to homepage")}
           >
             <span className={styles.backArrow}>‹</span>
-            <span>Back</span>
+            <span>{t("Back")}</span>
           </button>
 
           <div className={styles.titleArea}>
             <p className={styles.eyebrow}>
-              {collection.detailTagline.toUpperCase()}
+              {t(collection.detailTagline).toUpperCase()}
             </p>
-            <h1 className={styles.collectionTitle}>{collection.title}</h1>
+            <h1 className={styles.collectionTitle}>{t(collection.title)}</h1>
             <p className={styles.collectionDesc}>
-              {collection.description || collection.summary}
+              {t(collection.description || collection.summary)}
             </p>
           </div>
 
@@ -189,13 +194,13 @@ export default function CollectionDetail({
                 </svg>
                 <div className={styles.warningBoxContent}>
                   <div className={styles.warningBoxBadge}>
-                    {collection.contentWarning.badge}
+                    {t(collection.contentWarning.badge)}
                   </div>
                   <h3 className={styles.warningBoxTitle}>
-                    {collection.contentWarning.title}
+                    {t(collection.contentWarning.title)}
                   </h3>
                   <p className={styles.warningBoxDesc}>
-                    {collection.contentWarning.description}
+                    {t(collection.contentWarning.description)}
                   </p>
                 </div>
               </div>
@@ -203,7 +208,7 @@ export default function CollectionDetail({
                 <div className={styles.warningTagsRow}>
                   {collection.contentWarning.tags.map((tag) => (
                     <span key={tag} className={styles.warningTag}>
-                      {tag}
+                      {t(tag)}
                     </span>
                   ))}
                 </div>
@@ -227,7 +232,7 @@ export default function CollectionDetail({
                     }`}
                     onClick={() => onSelectCollection(col.slug)}
                   >
-                    <span>{col.label || col.title}</span>
+                    <span>{t(col.label || col.title)}</span>
                     <span style={{ opacity: 0.5 }}>({col.media.length})</span>
                   </button>
                 );
@@ -237,8 +242,18 @@ export default function CollectionDetail({
         </div>
 
         {/* 3-Column Responsive Media Grid */}
-        <div className={styles.grid}>
+        <div className={`${styles.grid} ${collection.slug === "clips-shorts" ? styles.portraitGrid : ""}`}>
           {collection.media.map((item) => {
+            const isFeatured = item.featured === true;
+            const isGamingMedia =
+              collection.slug === "edited-gaming-moments" ||
+              (collection.slug === "clips-shorts" && item.type === "tiktok");
+            const isPortrait =
+              item.aspectRatio === "9:16" ||
+              collection.slug === "clips-shorts" ||
+              item.type === "tiktok" ||
+              (item.type === "youtube" && item.src.includes("shorts/")) ||
+              (item.type === "instagram" && item.src.includes("reel"));
             const platform = getPlatformLabel(item);
             const watchText = getPlatformWatchText(item);
             const thumbSrc =
@@ -247,16 +262,16 @@ export default function CollectionDetail({
               collection.thumbnailVideo ||
               "/projects/rosblos.png";
             const author =
-              collection.slug === "edited-gaming-moments" ? "bojack" : "Fajry";
+              item.author || (isGamingMedia ? "bojack" : "Fajry");
             const avatarSrc =
-              collection.slug === "edited-gaming-moments"
+              isGamingMedia
                 ? "/PP%20BARU%20bg%20white.png"
                 : "/fajry-avatar.jpg";
 
             return (
               <article
                 key={item.id}
-                className={styles.card}
+                className={`${styles.card} ${isFeatured ? styles.featuredCard : ""} ${isPortrait ? styles.portraitCard : ""}`}
                 onClick={() => onSelectMedia(item)}
                 role="button"
                 tabIndex={0}
@@ -266,7 +281,16 @@ export default function CollectionDetail({
                   }
                 }}
               >
-                {/* 16:9 Thumbnail Area */}
+                {isFeatured && (
+                  <div className={styles.featuredBanner}>
+                    <span><span aria-hidden="true">✦ </span>{t("Featured Film")}</span>
+                    {item.achievements && item.achievements.length > 0 && (
+                      <span className={styles.featuredAwardCount}>
+                        {item.achievements.length}{" "}{t("Awards")}</span>
+                    )}
+                  </div>
+                )}
+                {/* Thumbnail follows the media orientation. */}
                 <div className={styles.previewWrap}>
                   {/* Thumbnail Image or Video Preview */}
                   {thumbSrc.endsWith(".mp4") || thumbSrc.endsWith(".webm") ? (
@@ -278,12 +302,12 @@ export default function CollectionDetail({
                       autoPlay={false}
                       loop={false}
                       style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                      title={item.title}
+                      title={t(item.title)}
                     />
                   ) : (
                     <Image
                       src={thumbSrc}
-                      alt={item.title}
+                      alt={t(item.title)}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className={styles.previewImage}
@@ -295,14 +319,21 @@ export default function CollectionDetail({
 
                   {/* Channel / Author Badge in Top-Left */}
                   <div className={styles.authorBadge}>
-                    <img
-                      src={avatarSrc}
-                      alt={author}
-                      className={styles.authorAvatar}
-                    />
+                    {item.author ? (
+                      <svg className={styles.authorAvatar} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#080808" strokeWidth="1.5">
+                        <circle cx="12" cy="8" r="3" />
+                        <path d="M6 20v-2a6 6 0 0 1 12 0v2" />
+                      </svg>
+                    ) : (
+                      <img
+                        src={avatarSrc}
+                        alt={author}
+                        className={styles.authorAvatar}
+                      />
+                    )}
                     <div className={styles.authorTexts}>
                       <span className={styles.authorVideoTitle}>
-                        {item.title}
+                        {t(item.title)}
                       </span>
                       <span className={styles.authorName}>{author}</span>
                     </div>
@@ -312,7 +343,7 @@ export default function CollectionDetail({
                   {(item.warning || collection.slug === "edited-gaming-moments") && (
                     <span
                       className={styles.cardWarningBadge}
-                      title="Warning: Explicit language & loud audio"
+                      title={t("Warning: Explicit language & loud audio")}
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -328,9 +359,7 @@ export default function CollectionDetail({
                         <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
                         <line x1="12" y1="9" x2="12" y2="13" />
                         <line x1="12" y1="17" x2="12.01" y2="17" />
-                      </svg>
-                      16+ Loud / Explicit
-                    </span>
+                      </svg>{t("16+ Loud / Explicit")}</span>
                   )}
 
                   {/* Center Play Button Badge (omitted for image and design assets) */}
@@ -366,7 +395,7 @@ export default function CollectionDetail({
                       target="_blank"
                       rel="noreferrer"
                       className={styles.linkIconBubble}
-                      title="Open source"
+                      title={t("Open source")}
                       onClick={(e) => e.stopPropagation()}
                     >
                       <svg
@@ -404,7 +433,7 @@ export default function CollectionDetail({
                           <polygon points="6 4 20 12 6 20 6 4" />
                         </svg>
                       )}
-                      <span>{watchText}</span>
+                      <span>{t(watchText)}</span>
                     </a>
                   </div>
                 </div>
@@ -412,8 +441,8 @@ export default function CollectionDetail({
                 {/* Lower Card Info Row */}
                 <div className={styles.metaRow}>
                   <div className={styles.infoColumn}>
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
-                    <p className={styles.platformText}>{platform}</p>
+                    <h3 className={styles.cardTitle}>{t(item.title)}</h3>
+                    <p className={styles.platformText}>{t(platform)}</p>
                   </div>
 
                   <button
@@ -423,9 +452,7 @@ export default function CollectionDetail({
                       e.stopPropagation();
                       onSelectMedia(item);
                     }}
-                  >
-                    OPEN
-                  </button>
+                  >{t("OPEN")}</button>
                 </div>
               </article>
             );

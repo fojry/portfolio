@@ -174,7 +174,19 @@ export const WORKS_DATA: WorkCollection[] = [
         src: "/projects/hajatan.webm",
         thumbnail: "/projects/bukaruangg.png",
       },
-
+      {
+        id: "mg-2",
+        type: "video",
+        title: "Intro Motion 2D Bojack",
+        src: "/projects/loopstringer.webm",
+      },
+      {
+        id: "mg-3",
+        type: "video",
+        title: "Stringer Motion 2D Bojack",
+        src: "/projects/stringerbojack.webm",
+        aspectRatio: "16:9",
+      },
     ],
   },
   {

@@ -22,9 +22,6 @@ export default function Navbar({ onNavClick }: NavbarProps) {
     let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
     let ticking = false;
 
-    // Always initialize at full navbar on mount/refresh
-    setIsScrolled(false);
-
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {

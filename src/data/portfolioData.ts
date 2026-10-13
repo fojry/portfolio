@@ -189,6 +189,14 @@ export const WORKS_DATA: WorkCollection[] = [
         thumbnail: "/projects/thumbnail-mg3-bojack-stringer.png",
         aspectRatio: "16:9",
       },
+      {
+        id: "mg-4",
+        type: "video",
+        title: "Stringer Motion 2D Kanzen",
+        src: "/projects/KanzenLiveAlpha.webm",
+        thumbnail: "/projects/thumbnail-mg4-kanzen-stringer.png",
+        aspectRatio: "16:9",
+      },
     ],
   },
   {

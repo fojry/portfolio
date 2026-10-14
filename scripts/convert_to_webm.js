@@ -13,6 +13,8 @@ const filesToConvert = [
   { in: 'hajatan.mp4', out: 'hajatan.webm' },
   { in: 'Sarinah30Secrevision.mp4', out: 'Sarinah30Secrevision.webm' },
   { in: 'OFFICIAL TRAILER - NOTIFIKASI (2024).mp4', out: 'OFFICIAL TRAILER - NOTIFIKASI (2024).webm', copyTo: 'trailer-notifikasi.webm' },
+  { in: 'soal - tka jerome.mp4', out: 'jt1.webm' },
+  { in: 'concept-sudut bangun ruang datar.mp4', out: 'jt2.webm' },
 ];
 
 for (const item of filesToConvert) {

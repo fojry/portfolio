@@ -210,7 +210,13 @@ export const INDONESIAN: Record<string, string> = {
   "Award Winner": "Pemenang Penghargaan",
   "4x Award Winner": "Pemenang 4 Penghargaan",
   "Clear search": "Hapus pencarian",
-  "Search": "Cari"
+  "Search": "Cari",
+  "BCA Malaysia - Travel Refine": "BCA Malaysia - Travel Refine",
+  "BCA Malaysia - Travel": "BCA Malaysia - Travel",
+  "Commercial vertical short-form travel video edit for Bank Central Asia (BCA) Malaysia.": "Edit video perjalanan format pendek vertikal komersial untuk Bank Central Asia (BCA) Malaysia.",
+  "NEW": "BARU",
+  "New Highlight": "Sorotan Baru",
+  "Highlight": "Sorotan"
 };
 
 export function translate(text: string, language: Language): string {

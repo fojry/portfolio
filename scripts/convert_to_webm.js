@@ -15,6 +15,7 @@ const filesToConvert = [
   { in: 'OFFICIAL TRAILER - NOTIFIKASI (2024).mp4', out: 'OFFICIAL TRAILER - NOTIFIKASI (2024).webm', copyTo: 'trailer-notifikasi.webm' },
   { in: 'soal - tka jerome.mp4', out: 'jt1.webm' },
   { in: 'concept-sudut bangun ruang datar.mp4', out: 'jt2.webm' },
+  { in: 'BCA Malaysia - Travel Refine_1.mp4', out: 'bca-malaysia.webm' },
 ];
 
 for (const item of filesToConvert) {

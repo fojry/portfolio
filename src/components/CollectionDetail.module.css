@@ -254,6 +254,59 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
+.previewTopRightBadges {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.previewTopRightBadges .cardWarningBadge {
+  position: static;
+}
+
+.previewNewBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(8, 14, 24, 0.9);
+  border: 1px solid rgba(144, 197, 255, 0.75);
+  color: #90c5ff;
+  font-family: var(--font-gilroy);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6),
+    0 0 16px rgba(144, 197, 255, 0.35);
+}
+
+.pulseDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #90c5ff;
+  box-shadow: 0 0 8px #90c5ff;
+  animation: pulseDotAnim 1.6s ease-in-out infinite;
+}
+
+@keyframes pulseDotAnim {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
+
 /* Collection Switcher Pills */
 .tabsBar {
   display: flex;
@@ -376,6 +429,47 @@
 .featuredAwardCount {
   letter-spacing: 0;
   opacity: 0.7;
+}
+
+.newCard {
+  border-color: rgba(144, 197, 255, 0.5);
+  box-shadow: 0 0 0 1px rgba(144, 197, 255, 0.35),
+    0 16px 36px -10px rgba(0, 0, 0, 0.7),
+    0 0 24px -4px rgba(144, 197, 255, 0.25);
+}
+
+.newCard:hover,
+.newCard:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(144, 197, 255, 0.65),
+    0 24px 50px -10px rgba(0, 0, 0, 0.9),
+    0 0 32px -4px rgba(144, 197, 255, 0.45);
+}
+
+.newFeaturedBanner {
+  background: linear-gradient(90deg, #90c5ff 0%, #e6f2ff 100%);
+  color: #06090e;
+  font-weight: 800;
+}
+
+.bannerTagText {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.newBadgeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #06090e;
+  color: #90c5ff;
+  border: 1px solid rgba(144, 197, 255, 0.45);
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 /* Preview Section (16:9) */

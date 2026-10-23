@@ -23,6 +23,8 @@ export interface MediaItem {
   sourceHref?: string;
   warning?: string;
   featured?: boolean;
+  isNew?: boolean;
+  badge?: string;
   description?: string;
   roles?: string[];
   achievementEvent?: string;
@@ -249,6 +251,8 @@ export const WORKS_DATA: WorkCollection[] = [
     slug: "clips-shorts",
     label: "Clips & Shorts",
     title: "Clips & Shorts",
+    thumbnail: "/projects/bca-malaysia-thumb.jpg",
+    thumbnailVideo: "/projects/bca-malaysia.webm",
     summary:
       "Short-form edits, educational clips, gaming highlights, and expressive subtitles.",
     accent:
@@ -264,6 +268,20 @@ export const WORKS_DATA: WorkCollection[] = [
       tags: ["Explicit Language", "Loud Audio / Screams", "Viewer Discretion Advised"],
     },
     media: [
+      {
+        id: "bca-malaysia-travel",
+        type: "video",
+        title: "BCA Malaysia - Travel Refine",
+        author: "BCA",
+        src: "/projects/bca-malaysia.webm",
+        thumbnail: "/projects/bca-malaysia-thumb.jpg",
+        aspectRatio: "9:16",
+        featured: true,
+        isNew: true,
+        badge: "NEW",
+        description:
+          "Commercial vertical short-form travel video edit for Bank Central Asia (BCA) Malaysia.",
+      },
       {
         id: "kusnandar-7677103336830684437",
         type: "tiktok",

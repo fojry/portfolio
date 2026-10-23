@@ -271,7 +271,7 @@ export default function CollectionDetail({
             return (
               <article
                 key={item.id}
-                className={`${styles.card} ${isFeatured ? styles.featuredCard : ""} ${isPortrait ? styles.portraitCard : ""}`}
+                className={`${styles.card} ${isFeatured ? styles.featuredCard : ""} ${item.isNew ? styles.newCard : ""} ${isPortrait ? styles.portraitCard : ""}`}
                 onClick={() => onSelectMedia(item)}
                 role="button"
                 tabIndex={0}
@@ -281,9 +281,22 @@ export default function CollectionDetail({
                   }
                 }}
               >
-                {isFeatured && (
-                  <div className={styles.featuredBanner}>
-                    <span><span aria-hidden="true">✦ </span>{t("Featured Film")}</span>
+                {(isFeatured || item.isNew) && (
+                  <div className={`${styles.featuredBanner} ${item.isNew ? styles.newFeaturedBanner : ""}`}>
+                    <span className={styles.bannerTagText}>
+                      <span aria-hidden="true">✦ </span>
+                      {item.isNew
+                        ? t("New Highlight")
+                        : item.type === "Trailer Short Film"
+                        ? t("Featured Film")
+                        : t("Highlight")}
+                    </span>
+                    {item.isNew && (
+                      <span className={styles.newBadgeTag}>
+                        <span className={styles.pulseDot} />
+                        {t("NEW")}
+                      </span>
+                    )}
                     {item.achievements && item.achievements.length > 0 && (
                       <span className={styles.featuredAwardCount}>
                         {item.achievements.length}{" "}{t("Awards")}</span>
@@ -339,28 +352,36 @@ export default function CollectionDetail({
                     </div>
                   </div>
 
-                  {/* Warning Badge for Loud Sound / Explicit Language */}
-                  {(item.warning || collection.slug === "edited-gaming-moments") && (
-                    <span
-                      className={styles.cardWarningBadge}
-                      title={t("Warning: Explicit language & loud audio")}
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="10"
-                        height="10"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        style={{ display: "inline-block", verticalAlign: "-1px", marginRight: "4px" }}
+                  {/* Top-Right Badges: NEW pill & Content Warning */}
+                  <div className={styles.previewTopRightBadges}>
+                    {item.isNew && (
+                      <span className={styles.previewNewBadge}>
+                        <span className={styles.pulseDot} />
+                        {t("NEW")}
+                      </span>
+                    )}
+                    {(item.warning || collection.slug === "edited-gaming-moments") && (
+                      <span
+                        className={styles.cardWarningBadge}
+                        title={t("Warning: Explicit language & loud audio")}
                       >
-                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                        <line x1="12" y1="9" x2="12" y2="13" />
-                        <line x1="12" y1="17" x2="12.01" y2="17" />
-                      </svg>{t("16+ Loud / Explicit")}</span>
-                  )}
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="10"
+                          height="10"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          style={{ display: "inline-block", verticalAlign: "-1px", marginRight: "4px" }}
+                        >
+                          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                          <line x1="12" y1="9" x2="12" y2="13" />
+                          <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>{t("16+ Loud / Explicit")}</span>
+                    )}
+                  </div>
 
                   {/* Center Play Button Badge (omitted for image and design assets) */}
                   {item.type !== "image" &&

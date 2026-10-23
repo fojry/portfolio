@@ -242,9 +242,17 @@ export default function FeaturedStage({
               </span>
 
               {/* Top-right Tag */}
-              <span className={styles.categoryBadge}>
-                {t(currentWork.detailTagline)}
-              </span>
+              <div className={styles.stageTopRightBadges}>
+                {(heroMedia?.isNew || currentWork.slug === "clips-shorts") && (
+                  <span className={styles.newStageBadge}>
+                    <span className={styles.pulseDot} />
+                    {t("NEW")}
+                  </span>
+                )}
+                <span className={styles.categoryBadge}>
+                  {t(currentWork.detailTagline)}
+                </span>
+              </div>
 
               {/* Bottom Content Info */}
               <div className={styles.stageInfo}>
@@ -387,7 +395,10 @@ export default function FeaturedStage({
                 }`}
                 onClick={() => handleTabClick(idx)}
               >
-                {t(work.label)}
+                <span>{t(work.label)}</span>
+                {work.slug === "clips-shorts" && (
+                  <span className={styles.tabNewPill}>{t("NEW")}</span>
+                )}
               </button>
             );
           })}

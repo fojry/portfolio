@@ -167,6 +167,20 @@
   -webkit-backdrop-filter: blur(12px);
 }
 
+.stageTopRightBadges {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stageTopRightBadges .categoryBadge {
+  position: static;
+}
+
 .categoryBadge {
   position: absolute;
   top: 20px;
@@ -182,6 +196,53 @@
   border: 1px solid rgba(144, 197, 255, 0.3);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+.newStageBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-gilroy);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #06090e;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #90c5ff 0%, #ffffff 100%);
+  box-shadow: 0 0 16px rgba(144, 197, 255, 0.45);
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #06090e;
+  animation: pulseDotStageAnim 1.6s ease-in-out infinite;
+}
+
+@keyframes pulseDotStageAnim {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+}
+
+.tabNewPill {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #06090e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
 }
 
 .stageInfo {

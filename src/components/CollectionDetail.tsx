@@ -267,10 +267,15 @@ export default function CollectionDetail({
               isGamingMedia
                 ? "/PP%20BARU%20bg%20white.png"
                 : "/fajry-avatar.jpg";
+            const isLocalVideo =
+              item.src.endsWith(".webm") ||
+              item.src.endsWith(".mp4") ||
+              item.src.startsWith("/");
 
             return (
               <article
                 key={item.id}
+                data-protected-media="true"
                 className={`${styles.card} ${isFeatured ? styles.featuredCard : ""} ${item.isNew ? styles.newCard : ""} ${isPortrait ? styles.portraitCard : ""}`}
                 onClick={() => onSelectMedia(item)}
                 role="button"
@@ -411,51 +416,85 @@ export default function CollectionDetail({
 
                   {/* Bottom Frosted Bar (Link + Platform Chip) */}
                   <div className={styles.previewBottomBar}>
-                    <a
-                      href={item.src}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={styles.linkIconBubble}
-                      title={t("Open source")}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="13"
-                        height="13"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                    {isLocalVideo ? (
+                      <button
+                        type="button"
+                        className={styles.linkIconBubble}
+                        title={t("Play Video")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectMedia(item);
+                        }}
                       >
-                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                      </svg>
-                    </a>
-
-                    <a
-                      href={item.src}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={styles.watchPlatformChip}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {(item.type === "youtube" ||
-                        collection.slug === "livestreaming-event") && (
                         <svg
                           viewBox="0 0 24 24"
-                          width="11"
-                          height="11"
-                          fill="#ff0000"
-                          aria-hidden="true"
-                          style={{ display: "inline-block", verticalAlign: "middle" }}
+                          width="12"
+                          height="12"
+                          fill="currentColor"
                         >
                           <polygon points="6 4 20 12 6 20 6 4" />
                         </svg>
-                      )}
-                      <span>{t(watchText)}</span>
-                    </a>
+                      </button>
+                    ) : (
+                      <a
+                        href={item.src}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.linkIconBubble}
+                        title={t("Open source")}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="13"
+                          height="13"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                        </svg>
+                      </a>
+                    )}
+
+                    {isLocalVideo ? (
+                      <button
+                        type="button"
+                        className={styles.watchPlatformChip}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectMedia(item);
+                        }}
+                      >
+                        <span>{t(watchText)}</span>
+                      </button>
+                    ) : (
+                      <a
+                        href={item.src}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.watchPlatformChip}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {(item.type === "youtube" ||
+                          collection.slug === "livestreaming-event") && (
+                          <svg
+                            viewBox="0 0 24 24"
+                            width="11"
+                            height="11"
+                            fill="#ff0000"
+                            aria-hidden="true"
+                            style={{ display: "inline-block", verticalAlign: "middle" }}
+                          >
+                            <polygon points="6 4 20 12 6 20 6 4" />
+                          </svg>
+                        )}
+                        <span>{t(watchText)}</span>
+                      </a>
+                    )}
                   </div>
                 </div>
 

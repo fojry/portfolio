@@ -137,6 +137,10 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
               <video
                 className={styles.modalEmbed}
                 controls
+                controlsList="nodownload noplaybackrate"
+                disablePictureInPicture
+                disableRemotePlayback
+                onContextMenu={(e) => e.preventDefault()}
                 poster={item.thumbnail}
                 autoPlay
                 playsInline
@@ -253,14 +257,17 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
               </section>
             )}
 
-            {item.type !== "behance" && !item.src.includes("behance.net") && (
-              <a
-                className={styles.modalSourceLink}
-                href={item.src}
-                target="_blank"
-                rel="noreferrer"
-              >{t("Open original")}</a>
-            )}
+            {!isDirectVideo &&
+              item.type !== "behance" &&
+              !item.src.includes("behance.net") &&
+              !item.src.startsWith("/") && (
+                <a
+                  className={styles.modalSourceLink}
+                  href={item.src}
+                  target="_blank"
+                  rel="noreferrer"
+                >{t("Open original")}</a>
+              )}
           </div>
         </div>
       </div>

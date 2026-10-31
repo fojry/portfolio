@@ -212,11 +212,17 @@ export const INDONESIAN: Record<string, string> = {
   "Clear search": "Hapus pencarian",
   "Search": "Cari",
   "BCA Malaysia - Travel Refine": "BCA Malaysia - Travel Refine",
+  "BCA MALAYSIA - TRAVEL REFINE": "BCA MALAYSIA - TRAVEL REFINE",
+  "Hair Rate Nedevins Putri Hair Choice JFW": "Hair Rate Nedevins Putri Hair Choice JFW",
   "BCA Malaysia - Travel": "BCA Malaysia - Travel",
   "Commercial vertical short-form travel video edit for Bank Central Asia (BCA) Malaysia.": "Edit video perjalanan format pendek vertikal komersial untuk Bank Central Asia (BCA) Malaysia.",
   "NEW": "BARU",
   "New Highlight": "Sorotan Baru",
-  "Highlight": "Sorotan"
+  "Highlight": "Sorotan",
+  "Jakarta Fashion Week (JFW) content coverage featuring Laras with digicam aesthetic for Putri Hair Choice.": "Liputan konten Jakarta Fashion Week (JFW) bersama Laras dengan estetika visual digicam untuk Putri Hair Choice.",
+  "Jakarta Fashion Week (JFW) content coverage featuring Syibung with digicam aesthetic for Putri Hair Choice.": "Liputan konten Jakarta Fashion Week (JFW) bersama Syibung dengan estetika visual digicam untuk Putri Hair Choice.",
+  "Me Vs What I see trend creative short featuring Nedevins for Putri Hair Choice at Jakarta Fashion Week.": "Video pendek kreatif tren Me Vs What I see bersama Nedevins untuk Putri Hair Choice di Jakarta Fashion Week.",
+  "Rate Hair with Nedevins street interview short-form video for Putri Hair Choice at Jakarta Fashion Week.": "Video pendek wawancara jalanan Rate Hair bersama Nedevins untuk Putri Hair Choice di Jakarta Fashion Week."
 };
 
 export function translate(text: string, language: Language): string {

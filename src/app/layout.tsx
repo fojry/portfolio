@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import MediaProtection from "@/components/MediaProtection";
 
 export const metadata: Metadata = {
   title: "Fajry Radiant — Visual Designer & Creative Editor",
@@ -21,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased"><LanguageProvider>{children}</LanguageProvider></body>
+      <body className="antialiased">
+        <MediaProtection />
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

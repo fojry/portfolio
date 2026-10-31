@@ -90,6 +90,10 @@ export default function LazyVideo({
       loop={loop}
       muted={muted}
       controls={controls}
+      controlsList="nodownload noplaybackrate"
+      disablePictureInPicture
+      disableRemotePlayback
+      onContextMenu={(e) => e.preventDefault()}
       playsInline={playsInline}
       preload={shouldLoad ? "metadata" : "none"}
       title={title}

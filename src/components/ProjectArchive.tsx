@@ -19,6 +19,22 @@ interface ArchiveItem {
 const ARCHIVE_ITEMS: ArchiveItem[] = [
   {
     id: "arc-1",
+    name: "Hair Rate Nedevins Putri Hair Choice JFW",
+    category: "Clips & Shorts",
+    year: "2024",
+    image: "/projects/jfw-rate-hair-nedevins-thumb.jpg",
+    media: {
+      id: "jfw-rate-hair-nedevins",
+      type: "video",
+      title: "Rate Hair With Nedevins - PUTRI HAIR CHOICE JFW",
+      author: "Putri Hair Choice",
+      src: "/projects/JFW_Nadevins Interview Revisi 3.webm",
+      thumbnail: "/projects/jfw-rate-hair-nedevins-thumb.jpg",
+      aspectRatio: "9:16",
+    },
+  },
+  {
+    id: "arc-2",
     name: "ROBOKOP",
     category: "Every Table Has a Story",
     year: "2024",
@@ -33,7 +49,7 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
     },
   },
   {
-    id: "arc-2",
+    id: "arc-3",
     name: "Commercial Poster",
     category: "Commercial Banner Design",
     year: "2024",
@@ -47,7 +63,7 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
     },
   },
   {
-    id: "arc-3",
+    id: "arc-4",
     name: "Volume Gigs : podcast session",
     category: "Podcast Session",
     year: "2026",
@@ -61,7 +77,7 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
     },
   },
   {
-    id: "arc-4",
+    id: "arc-5",
     name: "Exhibition Poster",
     category: "Post Human Exhibition",
     year: "2026",
@@ -72,21 +88,6 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
       title: "Post Human Exhibition Poster",
       src: "/projects/Eye-witnesses Fajry Radiant.png",
       thumbnail: "/projects/Eye-witnesses Fajry Radiant.png",
-    },
-  },
-  {
-    id: "arc-5",
-    name: "Roblox : Cooking Caos",
-    category: "Roblox / Funny Moments",
-    year: "2025",
-    image: "/projects/rosblos.png",
-    media: {
-      id: "game-5",
-      type: "tiktok",
-      title: "Lelaki ketika di dapur - Roblox Cooking Chaos",
-      src: "https://www.tiktok.com/@simpangbojack/video/7588870093765922056",
-      thumbnail: "/projects/rosblos.png",
-      warning: "Explicit Language & Loud Audio",
     },
   },
   {

@@ -251,10 +251,10 @@ export default function ProjectShowcase({
   const categories = [
     "ALL",
     "Short Film",
-    "Motion Graphics",
+    "Clips & Shorts",
     "Commercial",
     "Gaming Edits",
-    "Clips & Shorts",
+    "Motion Graphics",
     "Visual Design",
     "Livestreaming",
   ];

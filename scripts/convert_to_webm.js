@@ -16,6 +16,10 @@ const filesToConvert = [
   { in: 'soal - tka jerome.mp4', out: 'jt1.webm' },
   { in: 'concept-sudut bangun ruang datar.mp4', out: 'jt2.webm' },
   { in: 'BCA Malaysia - Travel Refine_1.mp4', out: 'bca-malaysia.webm' },
+  { in: 'DAY 3_JFW_KONTEN LARAS DIGICAM.mp4', out: 'DAY 3_JFW_KONTEN LARAS DIGICAM.webm', copyTo: 'jfw-laras.webm' },
+  { in: 'DAY 3_JFW_KONTEN SYIBUNG DIGICAM.mp4', out: 'DAY 3_JFW_KONTEN SYIBUNG DIGICAM.webm', copyTo: 'jfw-syibung.webm' },
+  { in: 'JFW_ME VS WHAT I SEE FINAL.mp4', out: 'JFW_ME VS WHAT I SEE FINAL.webm', copyTo: 'jfw-me-vs-what-i-see.webm' },
+  { in: 'JFW_Nadevins Interview Revisi 3.mp4', out: 'JFW_Nadevins Interview Revisi 3.webm', copyTo: 'jfw-rate-hair-nedevins.webm' },
 ];
 
 for (const item of filesToConvert) {

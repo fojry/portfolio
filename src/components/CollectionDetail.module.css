@@ -874,6 +874,15 @@
   border-radius: 14px;
 }
 
+.portraitGrid .featuredBanner {
+  padding: 8px 12px;
+  font-size: 10.5px;
+  min-height: 32px;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
 .portraitGrid .metaRow {
   flex-direction: column;
   align-items: stretch;

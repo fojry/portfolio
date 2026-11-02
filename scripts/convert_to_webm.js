@@ -20,6 +20,8 @@ const filesToConvert = [
   { in: 'DAY 3_JFW_KONTEN SYIBUNG DIGICAM.mp4', out: 'DAY 3_JFW_KONTEN SYIBUNG DIGICAM.webm', copyTo: 'jfw-syibung.webm' },
   { in: 'JFW_ME VS WHAT I SEE FINAL.mp4', out: 'JFW_ME VS WHAT I SEE FINAL.webm', copyTo: 'jfw-me-vs-what-i-see.webm' },
   { in: 'JFW_Nadevins Interview Revisi 3.mp4', out: 'JFW_Nadevins Interview Revisi 3.webm', copyTo: 'jfw-rate-hair-nedevins.webm' },
+  { in: 'JFW_THIS OR THAT WITH SYIBUNG V2.mp4', out: 'JFW_THIS OR THAT WITH SYIBUNG V2.webm' },
+  { in: 'BCA_CHINA QRIS CROSS-BORDER V2.mp4', out: 'BCA_CHINA QRIS CROSS-BORDER V2.webm' },
 ];
 
 for (const item of filesToConvert) {
@@ -28,6 +30,18 @@ for (const item of filesToConvert) {
 
   if (!fs.existsSync(inputPath)) {
     console.warn('File not found, skipping:', inputPath);
+    continue;
+  }
+
+  if (fs.existsSync(outputPath) && !process.env.FORCE) {
+    console.log(`Skipping existing output: ${item.out}`);
+    if (item.copyTo) {
+      const copyDest = path.join(projectDir, item.copyTo);
+      if (!fs.existsSync(copyDest)) {
+        fs.copyFileSync(outputPath, copyDest);
+        console.log(`Copied existing to ${item.copyTo}`);
+      }
+    }
     continue;
   }
 

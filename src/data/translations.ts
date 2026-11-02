@@ -222,7 +222,12 @@ export const INDONESIAN: Record<string, string> = {
   "Jakarta Fashion Week (JFW) content coverage featuring Laras with digicam aesthetic for Putri Hair Choice.": "Liputan konten Jakarta Fashion Week (JFW) bersama Laras dengan estetika visual digicam untuk Putri Hair Choice.",
   "Jakarta Fashion Week (JFW) content coverage featuring Syibung with digicam aesthetic for Putri Hair Choice.": "Liputan konten Jakarta Fashion Week (JFW) bersama Syibung dengan estetika visual digicam untuk Putri Hair Choice.",
   "Me Vs What I see trend creative short featuring Nedevins for Putri Hair Choice at Jakarta Fashion Week.": "Video pendek kreatif tren Me Vs What I see bersama Nedevins untuk Putri Hair Choice di Jakarta Fashion Week.",
-  "Rate Hair with Nedevins street interview short-form video for Putri Hair Choice at Jakarta Fashion Week.": "Video pendek wawancara jalanan Rate Hair bersama Nedevins untuk Putri Hair Choice di Jakarta Fashion Week."
+  "Rate Hair with Nedevins street interview short-form video for Putri Hair Choice at Jakarta Fashion Week.": "Video pendek wawancara jalanan Rate Hair bersama Nedevins untuk Putri Hair Choice di Jakarta Fashion Week.",
+  "BCA China - QRIS Cross-Border": "BCA China - QRIS Cross-Border",
+  "BCA CHINA - QRIS CROSS-BORDER": "BCA CHINA - QRIS CROSS-BORDER",
+  "Commercial vertical short-form promotional edit for Bank Central Asia (BCA) QRIS Cross-Border China.": "Edit video promosi format pendek vertikal komersial untuk QRIS Cross-Border Bank Central Asia (BCA) di China.",
+  "This or That with Syibung - PUTRI HAIR CHOICE JFW": "This or That with Syibung - PUTRI HAIR CHOICE JFW",
+  "This or That interactive short-form video featuring Syibung for Putri Hair Choice at Jakarta Fashion Week.": "Video pendek interaktif This or That bersama Syibung untuk Putri Hair Choice di Jakarta Fashion Week."
 };
 
 export function translate(text: string, language: Language): string {

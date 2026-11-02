@@ -161,8 +161,8 @@ export const WORKS_DATA: WorkCollection[] = [
     slug: "clips-shorts",
     label: "Clips & Shorts",
     title: "Clips & Shorts",
-    thumbnail: "/projects/bca-malaysia-thumb.jpg",
-    thumbnailVideo: "/projects/bca-malaysia.webm",
+    thumbnail: "/projects/bca-china-qris-thumb.jpg",
+    thumbnailVideo: "/projects/BCA_CHINA QRIS CROSS-BORDER V2.webm",
     summary:
       "Short-form edits, educational clips, gaming highlights, and expressive subtitles.",
     accent:
@@ -178,6 +178,34 @@ export const WORKS_DATA: WorkCollection[] = [
       tags: ["Explicit Language", "Loud Audio / Screams", "Viewer Discretion Advised"],
     },
     media: [
+      {
+        id: "bca-china-qris",
+        type: "video",
+        title: "BCA China - QRIS Cross-Border",
+        author: "BCA",
+        src: "/projects/BCA_CHINA QRIS CROSS-BORDER V2.webm",
+        thumbnail: "/projects/bca-china-qris-thumb.jpg",
+        aspectRatio: "9:16",
+        featured: true,
+        isNew: true,
+        badge: "NEW",
+        description:
+          "Commercial vertical short-form promotional edit for Bank Central Asia (BCA) QRIS Cross-Border China.",
+      },
+      {
+        id: "jfw-this-or-that-syibung",
+        type: "video",
+        title: "This or That with Syibung - PUTRI HAIR CHOICE JFW",
+        author: "Putri Hair Choice",
+        src: "/projects/JFW_THIS OR THAT WITH SYIBUNG V2.webm",
+        thumbnail: "/projects/jfw-this-or-that-syibung-thumb.jpg",
+        aspectRatio: "9:16",
+        featured: true,
+        isNew: true,
+        badge: "NEW",
+        description:
+          "This or That interactive short-form video featuring Syibung for Putri Hair Choice at Jakarta Fashion Week.",
+      },
       {
         id: "jfw-laras",
         type: "video",

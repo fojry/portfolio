@@ -438,6 +438,7 @@ export const WORKS_DATA: WorkCollection[] = [
         title: "Instagram Feed",
         src: "/projects/FEED GAWESIKI.png",
         thumbnail: "/projects/FEED GAWESIKI.png",
+        sourceHref: "https://www.instagram.com/p/CzUoAKHScXB/?img_index=1",
       },
       {
         id: "ds-7",

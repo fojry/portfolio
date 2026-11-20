@@ -62,6 +62,7 @@ export default function CollectionDetail({
   };
 
   const getPlatformWatchText = (item: MediaItem): string => {
+    if (item.type === "image" && item.sourceHref) return "View full post";
     if (
       item.type === "Trailer Short Film" ||
       item.type.toLowerCase().includes("trailer")
@@ -270,7 +271,7 @@ export default function CollectionDetail({
             const isLocalVideo =
               item.src.endsWith(".webm") ||
               item.src.endsWith(".mp4") ||
-              item.src.startsWith("/");
+              (item.src.startsWith("/") && !item.sourceHref);
 
             return (
               <article
@@ -437,7 +438,7 @@ export default function CollectionDetail({
                       </button>
                     ) : (
                       <a
-                        href={item.src}
+                        href={item.sourceHref ?? item.src}
                         target="_blank"
                         rel="noreferrer"
                         className={styles.linkIconBubble}
@@ -473,7 +474,7 @@ export default function CollectionDetail({
                       </button>
                     ) : (
                       <a
-                        href={item.src}
+                        href={item.sourceHref ?? item.src}
                         target="_blank"
                         rel="noreferrer"
                         className={styles.watchPlatformChip}

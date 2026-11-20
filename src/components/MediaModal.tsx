@@ -219,6 +219,15 @@ export default function MediaModal({ item, onClose }: MediaModalProps) {
               </div>
             )}
 
+            {item.type === "image" && item.sourceHref && (
+              <a
+                className={styles.modalSourceLink}
+                href={item.sourceHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >{t("View full post")}</a>
+            )}
+
             {item.description && (
               <section className={styles.projectDetails} aria-label={t("Project information")}>
                 <h2 className={styles.projectTitle}>{t(item.title)}</h2>

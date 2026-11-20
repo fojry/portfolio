@@ -216,6 +216,7 @@ export const INDONESIAN: Record<string, string> = {
   "Hair Rate Nedevins Putri Hair Choice JFW": "Hair Rate Nedevins Putri Hair Choice JFW",
   "BCA Malaysia - Travel": "BCA Malaysia - Travel",
   "Commercial vertical short-form travel video edit for Bank Central Asia (BCA) Malaysia.": "Edit video perjalanan format pendek vertikal komersial untuk Bank Central Asia (BCA) Malaysia.",
+  "View full post": "Lihat postingan lengkap",
   "NEW": "BARU",
   "New Highlight": "Sorotan Baru",
   "Highlight": "Sorotan",

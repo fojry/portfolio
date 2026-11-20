@@ -302,96 +302,6 @@ export const WORKS_DATA: WorkCollection[] = [
     ],
   },
   {
-    slug: "edited-gaming-moments",
-    label: "Edited Gaming Moments",
-    title: "Edited Gaming Moments",
-    summary:
-      "Gameplay edit with subtitles, meme timing, funny moments, and chaotic cuts.",
-    accent:
-      "linear-gradient(135deg, rgba(239, 68, 68, 0.28), rgba(15, 23, 42, 0.95)), radial-gradient(circle at center, rgba(248, 113, 113, 0.28), transparent 44%)",
-    detailTagline: "Gaming Edit",
-    description:
-      "Subtitle-heavy gameplay videos packed with jokes, meme inserts, and chaotic moment edits.",
-    contentWarning: {
-      badge: "Content Warning: 16+ / Loud Audio",
-      title: "Content Warning: Explicit Language & Loud Audio",
-      description:
-        "Videos in this collection contain explicit language / profanity and sudden loud audio effects / screamers. Please adjust your headset or speaker volume before watching.",
-      tags: ["Explicit Language", "Loud Audio / Screams", "Viewer Discretion Advised"],
-    },
-    media: [
-      {
-        id: "game-1",
-        type: "youtube",
-        title: "Keluar Dari Semua Level Backroom",
-        src: "https://youtu.be/fn83zqydST8?si=GCaCcf5554nKuZir",
-        thumbnail: "/projects/tamnelbekrum2.png",
-        warning: "Explicit Language & Loud Audio",
-      },
-      {
-        id: "game-2",
-        type: "youtube",
-        title: "kami menamatkan GTA Online sebelum GTA VI",
-        src: "https://www.youtube.com/watch?v=spPTyAwCiIA",
-        thumbnail: "/projects/GTA.png",
-        warning: "Explicit Language & Loud Audio",
-      },
-      {
-        id: "game-3",
-        type: "youtube",
-        title: "Apakah kita sudah sampai? - Rv There Yet Compilation Indonesia",
-        src: "https://www.youtube.com/watch?v=02GMT6Xg-vQ&t=1s",
-        thumbnail: "/projects/tamnel1.png",
-        warning: "Explicit Language & Loud Audio",
-      },
-      ...GAMING_SHORTS_MEDIA,
-    ],
-  },
-  {
-    slug: "motion-graphic",
-    label: "Motion Graphic",
-    title: "Motion Graphic",
-    thumbnail: "/projects/bukaruangg.png",
-    summary: "Kinetic type, explainer segments, and clean product animation.",
-    accent:
-      "linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 0.92)), radial-gradient(circle at 80% 20%, rgba(186, 230, 253, 0.26), transparent 35%)",
-    detailTagline: "Selected Pieces",
-    description:
-      "Layout and pacing focused pieces that can mix typography, UI fragments, and product visual language.",
-    media: [
-      {
-        id: "mg-1",
-        type: "video",
-        title: "Kinetic Typography Buka Ruang : HajaTan",
-        src: "/projects/hajatan.webm",
-        thumbnail: "/projects/bukaruangg.png",
-      },
-      {
-        id: "mg-2",
-        type: "video",
-        title: "Intro Motion 2D Bojack",
-        src: "/projects/loopstringer.webm",
-        thumbnail: "/projects/thumbnail-mg2-bojack-intro.png",
-      },
-      {
-        id: "mg-3",
-        type: "video",
-        title: "Stringer Motion 2D Bojack",
-        src: "/projects/stringerbojack.webm",
-        thumbnail: "/projects/thumbnail-mg3-bojack-stringer.png",
-        aspectRatio: "16:9",
-      },
-      {
-        id: "mg-4",
-        type: "video",
-        title: "Stringer Motion 2D Kanzen",
-        src: "/projects/KanzenLiveAlpha.webm",
-        thumbnail: "/projects/thumbnail-mg4-kanzen-stringer.png",
-        aspectRatio: "16:9",
-      },
-    ],
-  },
-  {
     slug: "design",
     label: "Design",
     title: "Design",
@@ -462,6 +372,96 @@ export const WORKS_DATA: WorkCollection[] = [
         src: "/projects/ibnuufz.png",
         thumbnail: "/projects/ibnuufz.png",
       },
+    ],
+  },
+  {
+    slug: "motion-graphic",
+    label: "Motion Graphic",
+    title: "Motion Graphic",
+    thumbnail: "/projects/bukaruangg.png",
+    summary: "Kinetic type, explainer segments, and clean product animation.",
+    accent:
+      "linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 0.92)), radial-gradient(circle at 80% 20%, rgba(186, 230, 253, 0.26), transparent 35%)",
+    detailTagline: "Selected Pieces",
+    description:
+      "Layout and pacing focused pieces that can mix typography, UI fragments, and product visual language.",
+    media: [
+      {
+        id: "mg-1",
+        type: "video",
+        title: "Kinetic Typography Buka Ruang : HajaTan",
+        src: "/projects/hajatan.webm",
+        thumbnail: "/projects/bukaruangg.png",
+      },
+      {
+        id: "mg-2",
+        type: "video",
+        title: "Intro Motion 2D Bojack",
+        src: "/projects/loopstringer.webm",
+        thumbnail: "/projects/thumbnail-mg2-bojack-intro.png",
+      },
+      {
+        id: "mg-3",
+        type: "video",
+        title: "Stringer Motion 2D Bojack",
+        src: "/projects/stringerbojack.webm",
+        thumbnail: "/projects/thumbnail-mg3-bojack-stringer.png",
+        aspectRatio: "16:9",
+      },
+      {
+        id: "mg-4",
+        type: "video",
+        title: "Stringer Motion 2D Kanzen",
+        src: "/projects/KanzenLiveAlpha.webm",
+        thumbnail: "/projects/thumbnail-mg4-kanzen-stringer.png",
+        aspectRatio: "16:9",
+      },
+    ],
+  },
+  {
+    slug: "edited-gaming-moments",
+    label: "Edited Gaming Moments",
+    title: "Edited Gaming Moments",
+    summary:
+      "Gameplay edit with subtitles, meme timing, funny moments, and chaotic cuts.",
+    accent:
+      "linear-gradient(135deg, rgba(239, 68, 68, 0.28), rgba(15, 23, 42, 0.95)), radial-gradient(circle at center, rgba(248, 113, 113, 0.28), transparent 44%)",
+    detailTagline: "Gaming Edit",
+    description:
+      "Subtitle-heavy gameplay videos packed with jokes, meme inserts, and chaotic moment edits.",
+    contentWarning: {
+      badge: "Content Warning: 16+ / Loud Audio",
+      title: "Content Warning: Explicit Language & Loud Audio",
+      description:
+        "Videos in this collection contain explicit language / profanity and sudden loud audio effects / screamers. Please adjust your headset or speaker volume before watching.",
+      tags: ["Explicit Language", "Loud Audio / Screams", "Viewer Discretion Advised"],
+    },
+    media: [
+      {
+        id: "game-1",
+        type: "youtube",
+        title: "Keluar Dari Semua Level Backroom",
+        src: "https://youtu.be/fn83zqydST8?si=GCaCcf5554nKuZir",
+        thumbnail: "/projects/tamnelbekrum2.png",
+        warning: "Explicit Language & Loud Audio",
+      },
+      {
+        id: "game-2",
+        type: "youtube",
+        title: "kami menamatkan GTA Online sebelum GTA VI",
+        src: "https://www.youtube.com/watch?v=spPTyAwCiIA",
+        thumbnail: "/projects/GTA.png",
+        warning: "Explicit Language & Loud Audio",
+      },
+      {
+        id: "game-3",
+        type: "youtube",
+        title: "Apakah kita sudah sampai? - Rv There Yet Compilation Indonesia",
+        src: "https://www.youtube.com/watch?v=02GMT6Xg-vQ&t=1s",
+        thumbnail: "/projects/tamnel1.png",
+        warning: "Explicit Language & Loud Audio",
+      },
+      ...GAMING_SHORTS_MEDIA,
     ],
   },
   {

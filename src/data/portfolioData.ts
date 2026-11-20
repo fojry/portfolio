@@ -441,6 +441,14 @@ export const WORKS_DATA: WorkCollection[] = [
         sourceHref: "https://www.instagram.com/p/CzUoAKHScXB/?img_index=1",
       },
       {
+        id: "ds-9",
+        type: "image",
+        title: "Instagram Feed (2)",
+        src: "/projects/instagram-feed-2.jpg",
+        thumbnail: "/projects/instagram-feed-2.jpg",
+        sourceHref: "https://www.instagram.com/p/C0MmRPByIzg/?img_index=1",
+      },
+      {
         id: "ds-7",
         type: "image",
         title: "Open Recruitment Poster",
